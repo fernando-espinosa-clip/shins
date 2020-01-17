@@ -79,6 +79,9 @@ Estos Son los diferentes ambientes definidos en la API:
 }}
 
 {{~ blocks :block}}
+{{~ block.rows :p}}
+{{ console.log(p.schema); }}
+{{~}}
 {{? block.title }}*{{= block.title}}*{{= '\n\n'}}{{?}}
 {{? block.externalDocs}}
 <a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
