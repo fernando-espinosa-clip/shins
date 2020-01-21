@@ -43,3 +43,8 @@ ncp('./source/images', './pub/images', function (err) {
     console.log('Done copying images files!!');
 });
 
+fs.copyFile('./source/swagger.html', './pub/swagger.html', (err) => {
+    if (err) throw err;
+    console.log('Done copying swagger file!! ');
+});
+

@@ -12,13 +12,12 @@ info:
     version: 1.0.0
 servers:
     - description: URL de la Settlement API de Clip
-      url: https://api.clip.mx/v1/
-    # Added by API Auto Mocking Plugin
-    - description: SwaggerHub API Auto Mocking
-      url: https://virtserver.swaggerhub.com/TW_Wizeline/CLIP_SettlementAPI/1.0.0
+      url:  https://stageapi-gw.payclip.com
 tags:
     - name: Settlements
       description: El recurso **settlements** permite obtener reportes de los depósitos realizados en un periodo determinado.
+security:
+  -   ApiKeyAuth: [] # use the same name as under securitySchemes
 paths:
     /settlements:
         get:
@@ -28,6 +27,8 @@ paths:
             description: >-
                 Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
             operationId: settlements
+            security:
+                -  ApiKeyAuth: []
             parameters:
                 - name: api-key
                   in: header
@@ -137,6 +138,12 @@ paths:
                 "500":
                     description: Internal Server Error.
 components:
+    securitySchemes:
+        ApiKeyAuth: # arbitrary name for the security scheme
+            type: apiKey
+            in: header # can be "header", "query" or "cookie"
+            name: x-api-key # name of the header, query parameter or cookie
+            description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la POS API.
     schemas:
         settlements:
             type: object
