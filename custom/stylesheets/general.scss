@@ -62,11 +62,11 @@ a {
 #toc {
     li {
         &:hover {
-            background-color: rgba($nav-active-bg,0.07);
+            background-color: rgba($orange-clip,0.15);
         }
         a {
             &:hover {
-                background-color: rgba($nav-active-bg,0.07);
+                background-color: rgba($orange-clip,0.15);
             }
         }
     }
@@ -88,21 +88,21 @@ a {
     background-position: 6px 4px;
     padding: 0 5px;
     &.get {
-        background-color: $success;
+        background-color: $cerulean;
         color: $success-contrast;
     }
     &.post {
-        background-color: $warning;
+        background-color: $nice-blue;
         color: $warning-contrast;
     }
     &.put {
-        background-color: $error;
+        background-color: $watermelon;
     }
     &.patch {
-        background-color: $blue;
+        background-color: $aquamarine;
     }
     &.delete {
-        background-color: $pink-neon;
+        background-color: $lipstick;
     }
 }
 
@@ -690,11 +690,11 @@ a {
         .hljs-selector-tag,
         .hljs-name,
         .hljs-attr {
-            color: $orange-clip;
+            color: $aquamarine;
         }
         .hljs-symbol,
         .hljs-attribute {
-            color: #0489d2;
+            color: $orange-clip;
         }
         .hljs-string,
         .hljs-type,
@@ -706,7 +706,7 @@ a {
         .hljs-addition,
         .hljs-variable,
         .hljs-template-variable {
-            color: #f9c715;
+            color: $cerulean;
         }
     }
 
