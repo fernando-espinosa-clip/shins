@@ -3,6 +3,11 @@
     @include icon-search;
 }
 
+%icon-search-q {
+    @extend %icon;
+    content: "\e607";
+}
+
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -143,13 +148,68 @@ a {
     }
 
     & > .search {
-        display: none;
+        // display: none;
     }
 
     .search-results {
-        display: none;
+        // display: none;
     }
 
+    & > .search {
+        position: relative;
+
+        input {
+            background: $nav-bg;
+            // background-color: $nav-active-bg;
+            border-width: 0 0 1px 0;
+            border-color: $search-box-border-color;
+            //border: none;
+            padding: 6px 0 6px 27px;
+            box-sizing: border-box;
+            margin: $nav-v-padding $nav-padding;
+            width: $nav-width - ($nav-padding * 2);
+            outline: none;
+            color: $nav-text;
+            border-radius: 0; /* ios has a default border radius */
+        }
+
+        &:before {
+            position: absolute;
+            top: 17px;
+            left: 22px;
+            color: $dune; //$nav-text;
+            font-size: 16px;
+            @extend %icon-search-q;
+        }
+    }
+    .search-results {
+        margin-top: 0;
+        box-sizing: border-box;
+        height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition-property: height, margin;
+        transition-duration: 180ms;
+        transition-timing-function: ease-in-out;
+        background: $dusty-gray; //$nav-subitem-bg;
+
+        .no-results {
+            padding: 0 0 10px 20px;
+        }
+
+        li {
+            color: white;
+        }
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        &.visible {
+            height: 30%;
+            margin-bottom: 1em;
+        }
+    }
     // The Table of Contents is composed of multiple nested
     // unordered lists.  These styles remove the default
     // styling of an unordered list because it is ugly.
