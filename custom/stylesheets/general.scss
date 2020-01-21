@@ -1,3 +1,4 @@
+@import "variables";
 @mixin icon-search {
     @include icon-search;
 }
@@ -56,7 +57,12 @@ a {
 #toc {
     li {
         &:hover {
-            background-color: $nav-active-bg;
+            background-color: lighten($nav-active-bg,20%);
+        }
+        a {
+            &:hover {
+                background-color: lighten($nav-active-bg,20%);
+            }
         }
     }
 }
@@ -109,7 +115,8 @@ a {
     background-color: $nav-bg;
     font-size: 13px;
     font-weight: bold;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    border-right: 1px solid $dusty-gray;
+    // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 
     // language selector for mobile devices
     .lang-selector {
@@ -165,14 +172,17 @@ a {
 
     // This is the currently selected ToC entry
     .toc-link.active {
-        background-color: #383838; //$nav-active-bg;
-        color: $nav-active-text;
+        background-color: $nav-active-bg;
+        color: $dune;
     }
 
     // this is parent links of the currently selected ToC entry
     .toc-link.active-parent {
-        background-color: $nav-active-parent-bg;
-        color: $nav-active-parent-text;
+        background-color: white; // $nav-active-parent-bg;
+        color: $nav-text; // $nav-active-parent-text;
+        &:hover {
+            color: lighten($dune, 20%);
+        }
     }
 
     .toc-list-h2 {
@@ -189,8 +199,9 @@ a {
 
     .toc-h2 {
         // padding-left: $nav-padding + $nav-indent;
-        font-size: 12px;
+        font-size: 14px;
         padding: 10px 0 10px $nav-padding + $nav-indent;
+        color: $nav-text;
     }
 
     .toc-footer {
@@ -229,10 +240,16 @@ a {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 130ms;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
+    text-transform: none;
     line-height: normal;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    &:hover {
+        color: lighten($dune, 20%);
+    }
 }
 
 .toc-link {
@@ -303,7 +320,8 @@ a {
     .dark-box {
         width: $examples-width;
         // background-color: $examples-bg;
-        background-color: $lang-select-active-bg;
+        // background-color: $lang-select-active-bg;
+        background-image: linear-gradient(90deg, $mine-shaft 70%, $cod-gray);
         position: absolute;
         right: 0;
         top: 0;
@@ -313,7 +331,7 @@ a {
     .lang-selector {
         position: fixed;
         z-index: 50;
-        border-bottom: 5px solid $lang-select-active-bg;
+        // border-bottom: 5px solid $lang-select-active-bg;
     }
 }
 
@@ -329,6 +347,7 @@ a {
         padding: 0 10px;
         line-height: 28px;
         outline: 0;
+        border-top: 4px solid transparent;
 
         &:active,
         &:focus {
@@ -338,7 +357,7 @@ a {
         }
 
         &.active {
-            border-top: 2px solid $orange-clip;
+            border-top: 4px solid $orange-clip;
             background-color: $lang-select-active-bg;
             color: $lang-select-active-text;
         }
@@ -761,7 +780,7 @@ a {
 
     blockquote {
         & > p {
-            background-color: $nav-bg;
+            background-color: $cod-gray;
             // background-color: $lang-select-active-bg;
             padding: $code-annotation-padding 2em;
             color: #eee;
