@@ -1,6 +1,8 @@
+@import "variables";
+
 .accordion {
     background-color: transparent;
-    color: #444;
+    color: $code-annotation-bg;
     cursor: pointer;
     padding: 18px;
     width: auto;
@@ -71,7 +73,7 @@
     .arrow {
         height: 1.5em;
         width: 1.5em;
-        fill: white;
+        fill: $code-annotation-bg;
         vertical-align: middle;
         transition: transform 0.2s ease-out 0s;
         transform: rotateZ(-90deg);

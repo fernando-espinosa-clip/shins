@@ -473,6 +473,10 @@ a {
 
         @extend %left-col;
     }
+    & > p, & > table, & > ul, & > ol {
+        font-size: 16px;
+        color: $mine-shaft;
+    }
     & > table {
         display: table;
         margin: 0 30px 1em 30px;
@@ -508,13 +512,13 @@ a {
     h1,
     .h1 {
         border-top: none;
-        border-bottom: 1px solid #eeeeee;
-        background-color: #ffffff;
-        font-weight: normal;
-        color: #0288d1;
+        border-bottom: none;
+        background-color: transparent;
+        font-weight: bold;
+        color: $greyish-brown;
         font-family: "Barlow", sans-serif;
-        font-size: 2em;
-        letter-spacing: 0.5px;
+        font-size: 1.8em;
+        letter-spacing: 0.2px;
     }
 
     h1:first-child,
@@ -526,7 +530,7 @@ a {
     h2,
     .h2 {
         @extend %header-font;
-        font-size: 19px;
+        font-size: 20px;
         margin-top: 4em;
         margin-bottom: 0;
         border-top: 1px solid #ccc;
@@ -541,7 +545,7 @@ a {
     h2,
     .h2 {
         border-top: 01px solid #eee;
-        padding-bottom: 0.2em;
+        padding-bottom: 1rem !important;
         background-image: linear-gradient(
             to bottom,
             rgba(236, 236, 236, 0.2),
@@ -851,7 +855,7 @@ a {
         margin-left: 28px;
         margin-right: calc(#{$examples-width} + 28px);
         position: relative;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         line-height: 1.6;
         max-width: none;
         background: #f5f4f4;
