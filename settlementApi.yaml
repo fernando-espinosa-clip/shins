@@ -30,7 +30,7 @@ paths:
             security:
                 -  ApiKeyAuth: []
             parameters:
-                - name: api-key
+                - name: x-api-key
                   in: header
                   description: Confidential key.
                   required: true
