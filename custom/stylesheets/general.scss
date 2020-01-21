@@ -62,11 +62,11 @@ a {
 #toc {
     li {
         &:hover {
-            background-color: lighten($nav-active-bg,20%);
+            background-color: rgba($nav-active-bg,0.07);
         }
         a {
             &:hover {
-                background-color: lighten($nav-active-bg,20%);
+                background-color: rgba($nav-active-bg,0.07);
             }
         }
     }
@@ -232,7 +232,7 @@ a {
 
     // This is the currently selected ToC entry
     .toc-link.active {
-        background-color: $nav-active-bg;
+        background-color: rgba($nav-active-bg, 0.25);
         color: $dune;
     }
 
@@ -241,7 +241,7 @@ a {
         background-color: white; // $nav-active-parent-bg;
         color: $nav-text; // $nav-active-parent-text;
         &:hover {
-            color: lighten($dune, 20%);
+            color: rgba($dune, 20%);
         }
     }
 

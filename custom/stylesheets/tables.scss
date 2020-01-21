@@ -36,6 +36,9 @@
     &.success {
         color: $success-contrast;
         background-color: $success;
+        &:hover {
+            background: lighten($success, 7%);
+        }
         .arrow {
             fill: $success-contrast;
         }
@@ -43,6 +46,9 @@
     &.error {
         color: $error-contrast;
         background-color: $error;
+        &:hover {
+            background: lighten($error, 10%);
+        }
         .arrow {
             fill: $error-contrast;
         }
@@ -50,6 +56,9 @@
     &.warning {
         color: $warning-contrast;
         background-color: $warning;
+        &:hover {
+            background: lighten($warning, 7%);
+        }
         .arrow {
             fill: $warning-contrast;
         }
