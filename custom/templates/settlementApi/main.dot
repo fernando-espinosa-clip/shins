@@ -117,8 +117,6 @@ Estos Son los diferentes ambientes definidos en la API:
 
 {{?}}
 
-{{#def.postback}}
-
 {{#def.faq}}
 
 {{#def.footer}}
