@@ -1,5 +1,5 @@
 <h1 id="intro">POS API de Clip (v 1.0)</h1>
-<p>Contacto: <a href="mailto:devsupport@payclip.com">devsupport@payclip.com</a>.</p>
+<p>Contacto: <a href="mailto:developers@clip.mx">developers@clip.mx</a>.</p>
 {{#def.intro}}
 {{#def.security}}
 <h1 id="{{=data.title_prefix}}">{{=data.api.info && data.api.info.title}} {{=data.version}}</h1>

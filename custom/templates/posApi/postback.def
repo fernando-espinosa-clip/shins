@@ -11,7 +11,7 @@
 <ol>
     <li>Dirígete al menú de <strong>Transacciones</strong> en la terminal Clip Pro.</li>
     <li>Localiza la transacción a cobrar en la pestaña de <strong>Pendientes.</strong>
-        <br> La terminal muestra el mensaje <strong>Esperando la Tarjeta...</strong> </li>
+        <br> La terminal muestra el mensaje <strong>Esperando la Tarjeta...</strong></li>
     <li>Introduce la tarjeta del cliente y selecciona el monto de propina.
         <br>La terminal procesa el pago y presenta una pantalla para firma.</li>
     <li>Solicita al cliente que ingrese su firma en la pantalla de la terminal Clip.</li>
@@ -49,12 +49,12 @@
 </p>
 <ul>
 <li>Crear un URL del endpoint que recibe la notificación.</li>
-<li>Configurar las notificaciones de Postback en el dashboard de la <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip.</a></li>
+<li>Configurar las notificaciones de Postback en el dashboard de la <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip</a>.</li>
 </ul>
 <p>Configuración de las notificaciones de pago por postback</p>
 <p>Para configurar las notificaciones de Postback, realiza lo siguiente:</p>
 <ol>
-    <li>Ingresa a tu <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip.</a></li>
+    <li>Ingresa a tu <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip</a>.</li>
     <li>Dirígete a la sección <strong>Notificaciones de Pago por Postback</strong> en el menú izquierdo Herramientas Negocio.</li>
     <li>Selecciona el botón de <strong>Configuración de notificación (postback).</strong></li>
     <li>Introduce la URL del endpoint donde se indica.</li>

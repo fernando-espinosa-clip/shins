@@ -17,7 +17,7 @@
 },
 {
     q: '¿Cómo puedo proporcionar comentarios o solicitudes de características para la API de Clip Punto de Venta?',
-    a: 'Póngase en contacto con nuestra área de soporte para desarrolladores enviando sus comentarios o solicitud a <a href="mailto:devsupport@payclip.com">devsupport@payclip.com</a>.'
+    a: 'Póngase en contacto con nuestra área de soporte para desarrolladores enviando sus comentarios o solicitud a <a href="mailto:developer@clip.mx">developer@clip.mx</a>.'
 },
 {
     q: '¿Qué versiones de la aplicación Clip son compatibles con la API de Clip Punto de Venta?',
