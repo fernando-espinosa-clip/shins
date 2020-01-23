@@ -16,6 +16,8 @@ servers:
 tags:
     - name: Settlements
       description: El recurso **settlements** permite obtener reportes de los depósitos realizados en un periodo determinado.
+security:
+    - ApiKeyAuth: [] # use the same name as under securitySchemes
 paths:
     /settlements:
         get:
