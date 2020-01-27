@@ -112,26 +112,33 @@ function javascript_include_tag(include) {
             .split("\r")
             .join()
             .split("\n");
-        includeStr = '';
+        includeStr = "";
         for (let i in includes) {
             const inc = includes[i];
             let elements = inc.split('"');
             if (elements[1] || flag) {
                 if (elements[1] === "text/javascript" || flag) {
                     flag = true;
-                    includeStr += inc + "\n"
+                    includeStr += inc + "\n";
                 } else {
                     scripts.push(path.join(globalOptions.root, elements[1]));
                 }
             }
         }
-        let tmp = '';
-        scripts.forEach((from) => {
-            const pathTo = 'pub/js/';
-            const to = path.join(globalOptions.root, pathTo + from.split('/').slice(-1)[0]);
-            tmp += '<script src="js/' + from.split('/').slice(-1)[0]  + '"></script>' + '\n';
+        let tmp = "";
+        scripts.forEach(from => {
+            const pathTo = "pub/js/";
+            const to = path.join(
+                globalOptions.root,
+                pathTo + from.split("/").slice(-1)[0]
+            );
+            tmp +=
+                '<script src="js/' +
+                from.split("/").slice(-1)[0] +
+                '"></script>' +
+                "\n";
             fs.createReadStream(from).pipe(fs.createWriteStream(to));
-        })
+        });
         includeStr = tmp + includeStr;
     }
 
@@ -158,7 +165,7 @@ function partial(include) {
 
 function replaceAll(target, find, replace) {
     return target.replace(
-/*eslint no-useless-escape:0*/
+        /*eslint no-useless-escape:0*/
         new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&"), "g"),
         replace
     );
@@ -245,7 +252,7 @@ function stylesheet_link_tag(stylesheet, media) {
 function language_array(language_tabs) {
     const result = [];
     for (let lang in language_tabs) {
-        if (typeof language_tabs[lang] === "object") {
+        if (Object.prototype.hasOwnProperty.call(language_tabs, lang) && typeof language_tabs[lang] === "object") {
             result.push(Object.keys(language_tabs[lang])[0]);
         } else {
             result.push(language_tabs[lang]);
@@ -629,7 +636,7 @@ function render(inputStr, options, callback) {
 
 module.exports = {
     render: render,
-    srcDir: function() {
+    "srcDir": function() {
         return globalOptions.root;
     }
 };

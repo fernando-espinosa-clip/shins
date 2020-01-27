@@ -62,11 +62,11 @@ a {
 #toc {
     li {
         &:hover {
-            background-color: rgba($orange-clip,0.15);
+            background-color: rgba($orange-clip, 0.15);
         }
         a {
             &:hover {
-                background-color: rgba($orange-clip,0.15);
+                background-color: rgba($orange-clip, 0.15);
             }
         }
     }
@@ -476,7 +476,10 @@ a {
 
         @extend %left-col;
     }
-    & > p, & > table, & > ul, & > ol {
+    & > p,
+    & > table,
+    & > ul,
+    & > ol {
         font-size: $content-font-size;
         color: $mine-shaft;
     }
@@ -981,7 +984,8 @@ a {
         pre {
             max-width: inherit;
         }
-        pre, blockquote {
+        pre,
+        blockquote {
             background-color: black;
         }
         .no-format {

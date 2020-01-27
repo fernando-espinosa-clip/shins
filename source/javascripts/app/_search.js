@@ -9,7 +9,7 @@
     let searchDelay = 0;
     let timeoutHandle = 0;
 
-/*eslint no-undef:0*/
+    /*eslint no-undef:0*/
     const index = new lunr.Index();
 
     index.ref("id");
@@ -82,7 +82,7 @@
                             "</a></li>"
                     );
                 });
-                var link = searchResults.find('a');
+                let link = searchResults.find("a");
                 link.click(function() {
                     unhighlight();
                     searchResults.removeClass("visible");
@@ -90,7 +90,7 @@
                 highlight.call(searchInput);
             } else {
                 searchResults.html("<li class='no-results'></li>");
-               $(".search-results li").text(
+                $(".search-results li").text(
                     'No Results Found for "' + searchInput.value + '"'
                 );
             }
