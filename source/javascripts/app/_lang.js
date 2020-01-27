@@ -18,7 +18,7 @@ under the License.
 (function() {
     "use strict";
 
-    let languages = []
+    let languages = [];
 
     window.setupLanguages = setupLanguages;
     window.activateLanguage = activateLanguage;

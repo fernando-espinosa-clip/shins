@@ -1,13 +1,13 @@
 .accordion {
     background-color: transparent;
-    color: #444;
+    color: $code-annotation-bg;
     cursor: pointer;
     padding: 18px;
     width: auto;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: $content-font-size;
     transition: 0.4s;
 }
 
@@ -17,6 +17,7 @@
 }
 
 .panel {
+    font-size: $content-font-size;
     padding: 0 18px;
     background-color: white;
     max-height: 0;
@@ -25,8 +26,9 @@
     margin-bottom: 10px;
 }
 
-.responses, .accordion {
-    font-size: 1em;
+.responses,
+.accordion {
+    font-size: $content-font-size;
     margin-bottom: 4px;
     line-height: 1.5em;
     cursor: pointer;
@@ -36,6 +38,9 @@
     &.success {
         color: $success-contrast;
         background-color: $success;
+        &:hover {
+            background: lighten($success, 7%);
+        }
         .arrow {
             fill: $success-contrast;
         }
@@ -43,6 +48,9 @@
     &.error {
         color: $error-contrast;
         background-color: $error;
+        &:hover {
+            background: lighten($error, 10%);
+        }
         .arrow {
             fill: $error-contrast;
         }
@@ -50,6 +58,9 @@
     &.warning {
         color: $warning-contrast;
         background-color: $warning;
+        &:hover {
+            background: lighten($warning, 7%);
+        }
         .arrow {
             fill: $warning-contrast;
         }
@@ -62,7 +73,7 @@
     .arrow {
         height: 1.5em;
         width: 1.5em;
-        fill: white;
+        fill: $code-annotation-bg;
         vertical-align: middle;
         transition: transform 0.2s ease-out 0s;
         transform: rotateZ(-90deg);
@@ -257,9 +268,9 @@
 }
 @media (max-width: $phone-width) {
     .content {
-       .panel {
-           padding: 0 5px;
-       }
+        .panel {
+            padding: 0 5px;
+        }
     }
 }
 

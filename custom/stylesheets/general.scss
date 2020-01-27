@@ -1,5 +1,11 @@
+@import "variables";
 @mixin icon-search {
     @include icon-search;
+}
+
+%icon-search-q {
+    @extend %icon;
+    content: "\e607";
 }
 
 // @import 'rtl'; // uncomment to switch to RTL format
@@ -56,7 +62,12 @@ a {
 #toc {
     li {
         &:hover {
-            background-color: $nav-active-bg;
+            background-color: rgba($orange-clip, 0.15);
+        }
+        a {
+            &:hover {
+                background-color: rgba($orange-clip, 0.15);
+            }
         }
     }
 }
@@ -77,21 +88,21 @@ a {
     background-position: 6px 4px;
     padding: 0 5px;
     &.get {
-        background-color: $success;
+        background-color: $cerulean;
         color: $success-contrast;
     }
     &.post {
-        background-color: $warning;
+        background-color: $nice-blue;
         color: $warning-contrast;
     }
     &.put {
-        background-color: $error;
+        background-color: $watermelon;
     }
     &.patch {
-        background-color: $blue;
+        background-color: $aquamarine;
     }
     &.delete {
-        background-color: $pink-neon;
+        background-color: $lipstick;
     }
 }
 
@@ -109,7 +120,8 @@ a {
     background-color: $nav-bg;
     font-size: 13px;
     font-weight: bold;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
+    border-right: 1px solid $dusty-gray;
+    // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.15);
 
     // language selector for mobile devices
     .lang-selector {
@@ -136,13 +148,68 @@ a {
     }
 
     & > .search {
-        display: none;
+        // display: none;
     }
 
     .search-results {
-        display: none;
+        // display: none;
     }
 
+    & > .search {
+        position: relative;
+
+        input {
+            background: $nav-bg;
+            // background-color: $nav-active-bg;
+            border-width: 0 0 1px 0;
+            border-color: $search-box-border-color;
+            //border: none;
+            padding: 6px 0 6px 27px;
+            box-sizing: border-box;
+            margin: $nav-v-padding $nav-padding;
+            width: $nav-width - ($nav-padding * 2);
+            outline: none;
+            color: $nav-text;
+            border-radius: 0; /* ios has a default border radius */
+        }
+
+        &:before {
+            position: absolute;
+            top: 17px;
+            left: 22px;
+            color: $dune; //$nav-text;
+            font-size: $content-font-size;
+            @extend %icon-search-q;
+        }
+    }
+    .search-results {
+        margin-top: 0;
+        box-sizing: border-box;
+        height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition-property: height, margin;
+        transition-duration: 180ms;
+        transition-timing-function: ease-in-out;
+        background: $dusty-gray; //$nav-subitem-bg;
+
+        .no-results {
+            padding: 0 0 10px 20px;
+        }
+
+        li {
+            color: white;
+        }
+        a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        &.visible {
+            height: 30%;
+            margin-bottom: 1em;
+        }
+    }
     // The Table of Contents is composed of multiple nested
     // unordered lists.  These styles remove the default
     // styling of an unordered list because it is ugly.
@@ -165,14 +232,18 @@ a {
 
     // This is the currently selected ToC entry
     .toc-link.active {
-        background-color: #383838; //$nav-active-bg;
-        color: $nav-active-text;
+        background-color: rgba($nav-active-bg, 0.25);
+        color: $dune;
+        font-weight: bold;
     }
 
     // this is parent links of the currently selected ToC entry
     .toc-link.active-parent {
-        background-color: $nav-active-parent-bg;
-        color: $nav-active-parent-text;
+        background-color: white; // $nav-active-parent-bg;
+        color: $nav-text; // $nav-active-parent-text;
+        &:hover {
+            color: rgba($dune, 20%);
+        }
     }
 
     .toc-list-h2 {
@@ -186,11 +257,14 @@ a {
             font-style: normal;
         }
     }
+    .toc-h1 {
+        font-size: $content-font-size;
+    }
 
     .toc-h2 {
-        // padding-left: $nav-padding + $nav-indent;
-        font-size: 12px;
-        padding: 10px 0 10px $nav-padding + $nav-indent;
+        font-size: 14px;
+        padding: $nav-indent $nav-indent $nav-indent $nav-padding + $nav-indent;
+        color: $nav-text;
     }
 
     .toc-footer {
@@ -229,10 +303,16 @@ a {
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 130ms;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: bold;
+    text-transform: none;
     line-height: normal;
+    font-size: 15px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    &:hover {
+        color: lighten($dune, 20%);
+    }
 }
 
 .toc-link {
@@ -266,9 +346,9 @@ a {
     text-decoration: none;
     font-weight: bold;
     opacity: 0.7;
-    line-height: 16px;
+    line-height: $content-font-size;
     img {
-        height: 16px;
+        height: $content-font-size;
         vertical-align: bottom;
     }
 
@@ -303,7 +383,8 @@ a {
     .dark-box {
         width: $examples-width;
         // background-color: $examples-bg;
-        background-color: $lang-select-active-bg;
+        // background-color: $lang-select-active-bg;
+        background-image: linear-gradient(90deg, $mine-shaft 70%, $cod-gray);
         position: absolute;
         right: 0;
         top: 0;
@@ -313,7 +394,7 @@ a {
     .lang-selector {
         position: fixed;
         z-index: 50;
-        border-bottom: 5px solid $lang-select-active-bg;
+        // border-bottom: 5px solid $lang-select-active-bg;
     }
 }
 
@@ -329,6 +410,7 @@ a {
         padding: 0 10px;
         line-height: 28px;
         outline: 0;
+        border-top: 4px solid transparent;
 
         &:active,
         &:focus {
@@ -338,7 +420,7 @@ a {
         }
 
         &.active {
-            border-top: 2px solid $orange-clip;
+            border-top: 4px solid $orange-clip;
             background-color: $lang-select-active-bg;
             color: $lang-select-active-text;
         }
@@ -394,6 +476,13 @@ a {
 
         @extend %left-col;
     }
+    & > p,
+    & > table,
+    & > ul,
+    & > ol {
+        font-size: $content-font-size;
+        color: $mine-shaft;
+    }
     & > table {
         display: table;
         margin: 0 30px 1em 30px;
@@ -429,13 +518,13 @@ a {
     h1,
     .h1 {
         border-top: none;
-        border-bottom: 1px solid #eeeeee;
-        background-color: #ffffff;
-        font-weight: normal;
-        color: #0288d1;
+        border-bottom: none;
+        background-color: transparent;
+        font-weight: bold;
+        color: $greyish-brown;
         font-family: "Barlow", sans-serif;
-        font-size: 2em;
-        letter-spacing: 0.5px;
+        font-size: 1.8em;
+        letter-spacing: 0.2px;
     }
 
     h1:first-child,
@@ -447,7 +536,7 @@ a {
     h2,
     .h2 {
         @extend %header-font;
-        font-size: 19px;
+        font-size: $content-font-size;
         margin-top: 4em;
         margin-bottom: 0;
         border-top: 1px solid #ccc;
@@ -462,13 +551,13 @@ a {
     h2,
     .h2 {
         border-top: 01px solid #eee;
-        padding-bottom: 0.2em;
+        padding-bottom: 1rem !important;
         background-image: linear-gradient(
             to bottom,
             rgba(236, 236, 236, 0.2),
             rgba(255, 255, 255, 0)
         );
-        font-weight: normal;
+        font-weight: bold;
         em {
             display: none;
         }
@@ -611,11 +700,11 @@ a {
         .hljs-selector-tag,
         .hljs-name,
         .hljs-attr {
-            color: $orange-clip;
+            color: $aquamarine;
         }
         .hljs-symbol,
         .hljs-attribute {
-            color: #0489d2;
+            color: $orange-clip;
         }
         .hljs-string,
         .hljs-type,
@@ -627,7 +716,7 @@ a {
         .hljs-addition,
         .hljs-variable,
         .hljs-template-variable {
-            color: #f9c715;
+            color: $cerulean;
         }
     }
 
@@ -761,7 +850,7 @@ a {
 
     blockquote {
         & > p {
-            background-color: $nav-bg;
+            background-color: $cod-gray;
             // background-color: $lang-select-active-bg;
             padding: $code-annotation-padding 2em;
             color: #eee;
@@ -772,7 +861,7 @@ a {
         margin-left: 28px;
         margin-right: calc(#{$examples-width} + 28px);
         position: relative;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         line-height: 1.6;
         max-width: none;
         background: #f5f4f4;
@@ -827,7 +916,7 @@ a {
     }
     .terms {
         margin-top: 1em;
-        font-size: 0.8rem;
+        font-size: 1rem;
         padding: 5px 28px;
     }
 }
@@ -895,7 +984,8 @@ a {
         pre {
             max-width: inherit;
         }
-        pre, blockquote {
+        pre,
+        blockquote {
             background-color: black;
         }
         .no-format {

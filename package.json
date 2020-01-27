@@ -1,7 +1,7 @@
 {
-    "name": "shins",
-    "version": "2.3.2-6",
-    "description": "Shins Is Not Slate",
+    "name": "node.api-doc-generator",
+    "version": "1.0.0",
+    "description": "an application that creates API documentation using the OpenAPI 3 Specification.",
     "main": "index.js",
     "config": {
         "posapi": {
@@ -20,10 +20,8 @@
         "start": "node arapaho -l",
         "rebuild-css": "node buildstyleCustom.js",
         "build-markdown-settlement-api": "widdershins  --environment $npm_package_config_settlementapi_options --summary $npm_package_config_settlementapi_apidef -o $npm_package_config_settlementapi_markdownoutput",
-        "build-pos-api-pre-documentation-settlement-api": "npm run build-settlement-api-markdown && npm run rebuild-css",
         "create-deploy-files-settlement-api": "npm run clean & npm run build-markdown-settlement-api && npm run rebuild-css && node shins -o ./pub/index.html",
         "build-markdown-pos-api": "widdershins  --environment $npm_package_config_posapi_options --summary $npm_package_config_posapi_apidef -o $npm_package_config_posapi_markdownoutput",
-        "build-pos-api-pre-documentation-pos-api": "npm run build-pos-api-markdown && npm run rebuild-css",
         "create-deploy-files-pos-api": "npm run clean & npm run build-markdown-pos-api && npm run rebuild-css && node shins -o ./pub/index.html"
     },
     "bin": {
@@ -34,7 +32,6 @@
         "url": "git+https://github.com/Mermade/shins.git"
     },
     "keywords": [
-        "shins",
         "slate",
         "swagger",
         "openapi",
@@ -42,12 +39,12 @@
         "documentation",
         "docs"
     ],
-    "author": "Mike Ralphson",
+    "author": "Mike Ralphson and Fernando Espinosa",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/Mermade/shins/issues"
+        "url": "https://github.com/fernando-espinosa-clip/shins/issues"
     },
-    "homepage": "https://github.com/Mermade/shins#readme",
+    "homepage": "https://github.com/fernando-espinosa-clip/shins#readme",
     "dependencies": {
         "call-me-maybe": "^1.0.1",
         "cheerio": "^1.0.0-rc.2",
@@ -64,6 +61,7 @@
         "ncp": "^2.0.0",
         "opn": "^5.2.0",
         "sanitize-html": "^1.15.0",
+        "swagger-ui": "^3.25.0",
         "tiny-opts-parser": "0.0.3",
         "uglify-js": "^2.7.4",
         "yaml": "^1.7.0"

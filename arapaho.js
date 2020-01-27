@@ -1,18 +1,18 @@
 #!/usr/bin/env node
 
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const express = require('express');
-const ejs = require('ejs');
-const compression = require('compression');
-const args = require('tiny-opts-parser')(process.argv);
-const opn = require('opn');
-const chokidar = require('chokidar');
+const express = require("express");
+const ejs = require("ejs");
+const compression = require("compression");
+const args = require("tiny-opts-parser")(process.argv);
+const opn = require("opn");
+const chokidar = require("chokidar");
 
-const shins = require('./index.js');
+const shins = require("./index.js");
 
 let includesModified = false;
 let lastGenTime = {};
@@ -21,18 +21,20 @@ if (args.l) args.launch = args.l;
 if (args.h) args.help = args.h;
 
 if (args.help) {
-    console.log('Usage: node arapaho [port] [-l|--launch] [-p|--preserve] [shins-options]');
+    console.log(
+        "Usage: node arapaho [port] [-l|--launch] [-p|--preserve] [shins-options]"
+    );
     process.exit(0);
 }
 
 let app = express();
 app.use(compression());
 
-app.set('view engine', 'html');
-app.engine('html', ejs.renderFile);
+app.set("view engine", "html");
+app.engine("html", ejs.renderFile);
 
-if (fs.existsSync('source/includes')) {
-    chokidar.watch('source/includes', {}).on('all',function() {
+if (fs.existsSync("source/includes")) {
+    chokidar.watch("source/includes", {}).on("all", function() {
         includesModified = true;
     });
 }
@@ -42,24 +44,23 @@ function getLastGenTime(fpath) {
     return 0;
 }
 
-function check(req,res,fpath) {
-    fpath = fpath.split('/').join('');
-    let srcStat = fs.statSync(path.join(__dirname,'source',fpath+'.md'));
-    let dstStat = {mtime: getLastGenTime(fpath)};
+function check(req, res, fpath) {
+    fpath = fpath.split("/").join("");
+    let srcStat = fs.statSync(path.join(__dirname, "source", fpath + ".md"));
+    let dstStat = { mtime: getLastGenTime(fpath) };
     if (!args.preserve) {
         try {
-            dstStat = fs.statSync(path.join(__dirname,fpath));
-        }
-        catch (ex) { }
+            dstStat = fs.statSync(path.join(__dirname, fpath));
+        } catch (ex) {}
     }
-    if (includesModified || (srcStat.mtime>dstStat.mtime)) {
+    if (includesModified || srcStat.mtime > dstStat.mtime) {
         includesModified = false;
         lastGenTime[fpath] = new Date();
-        console.log('Rebuilding '+fpath);
-        let source = path.join(__dirname,'source',fpath+'.md');
-        fs.readFile(source,'utf8',function(err,markdown){
+        console.log("Rebuilding " + fpath);
+        let source = path.join(__dirname, "source", fpath + ".md");
+        fs.readFile(source, "utf8", function(err, markdown) {
             if (markdown) {
-                let options = Object.assign({},args);
+                let options = Object.assign({}, args);
                 if (req.query.customcss) {
                     options.customCss = true;
                 }
@@ -74,47 +75,56 @@ function check(req,res,fpath) {
                 }
                 options.unsafe = true;
                 options.source = source;
-                shins.render(markdown,options,function(err,html){
+                shins.render(markdown, options, function(err, html) {
                     if (err) {
                         console.warn(err);
                         res.send(err);
-                    }
-                    else {
-                        let newHtml = html.replace(/"js/g, "\"pub/js");
-                        newHtml = newHtml.replace(/"css/g, "\"pub/css");
-                        newHtml = newHtml.replace(/"images/g, "\"pub/images");
+                    } else {
+                        let newHtml = html.replace(/"js/g, '"pub/js');
+                        newHtml = newHtml.replace(/"css/g, '"pub/css');
+                        newHtml = newHtml.replace(/"images/g, '"pub/images');
                         res.send(newHtml);
                         if (!args.preserve) {
-                            fs.writeFile(path.join(__dirname,fpath),html,'utf8',function(){});
+                            fs.writeFile(
+                                path.join(__dirname, fpath),
+                                html,
+                                "utf8",
+                                function() {}
+                            );
                         }
                     }
                 });
             }
         });
-    }
-    else {
-        res.render(path.join(__dirname,fpath));
+    } else {
+        res.render(path.join(__dirname, fpath));
     }
 }
 
-app.get('/', function(req,res) {
-    check(req,res,'index.html');
+app.get("/", function(req, res) {
+    check(req, res, "index.html");
 });
-app.get('*.html', function(req,res) {
-    check(req,res,req.path);
+app.get("*.html", function(req, res) {
+    check(req, res, req.path);
 });
-app.use("/",  express.static(__dirname));
+app.use("/", express.static(__dirname));
 
 let myport = process.env.PORT || 4567;
-if (args._.length>2) myport = args._[2];
+if (args._.length > 2) myport = args._[2];
 
-const server = app.listen(myport, function () {
+const server = app.listen(myport, function() {
     const host = server.address().address;
     const port = server.address().port;
 
-    console.log('Arapaho server listening at http://%s:%s', host, port);
+    console.log("Arapaho server listening at http://%s:%s", host, port);
     if (args.launch) {
-        console.log('Launching...');
-        opn('http://' + (host === '::' ? 'localhost' : 'host') + ':' + port + '/');
+        console.log("Launching...");
+        opn(
+            "http://" +
+                (host === "::" ? "localhost" : "host") +
+                ":" +
+                port +
+                "/"
+        );
     }
 });
