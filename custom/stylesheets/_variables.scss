@@ -87,18 +87,21 @@ $code-annotation-padding: 13px !default; // padding inside code annotations
 $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
+$base-font-size: 14px;
+$content-font-size: 1.14rem;
 
 // FONTS
 ////////////////////
 %default-font {
     // font-family: 'Roboto', sans-serif;
     font-family: "Barlow", sans-serif;
-    font-size: 14px;
+    font-size: $base-font-size;
 }
 
 %header-font {
     @extend %default-font;
     font-weight: bold;
+    color: $greyish-brown;
 }
 
 %code-font {

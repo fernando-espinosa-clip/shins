@@ -178,7 +178,7 @@ a {
             top: 17px;
             left: 22px;
             color: $dune; //$nav-text;
-            font-size: 16px;
+            font-size: $content-font-size;
             @extend %icon-search-q;
         }
     }
@@ -234,6 +234,7 @@ a {
     .toc-link.active {
         background-color: rgba($nav-active-bg, 0.25);
         color: $dune;
+        font-weight: bold;
     }
 
     // this is parent links of the currently selected ToC entry
@@ -256,11 +257,13 @@ a {
             font-style: normal;
         }
     }
+    .toc-h1 {
+        font-size: $content-font-size;
+    }
 
     .toc-h2 {
-        // padding-left: $nav-padding + $nav-indent;
         font-size: 14px;
-        padding: 10px 0 10px $nav-padding + $nav-indent;
+        padding: $nav-indent $nav-indent $nav-indent $nav-padding + $nav-indent;
         color: $nav-text;
     }
 
@@ -343,9 +346,9 @@ a {
     text-decoration: none;
     font-weight: bold;
     opacity: 0.7;
-    line-height: 16px;
+    line-height: $content-font-size;
     img {
-        height: 16px;
+        height: $content-font-size;
         vertical-align: bottom;
     }
 
@@ -474,7 +477,7 @@ a {
         @extend %left-col;
     }
     & > p, & > table, & > ul, & > ol {
-        font-size: 16px;
+        font-size: $content-font-size;
         color: $mine-shaft;
     }
     & > table {
@@ -530,7 +533,7 @@ a {
     h2,
     .h2 {
         @extend %header-font;
-        font-size: 20px;
+        font-size: $content-font-size;
         margin-top: 4em;
         margin-bottom: 0;
         border-top: 1px solid #ccc;
@@ -551,7 +554,7 @@ a {
             rgba(236, 236, 236, 0.2),
             rgba(255, 255, 255, 0)
         );
-        font-weight: normal;
+        font-weight: bold;
         em {
             display: none;
         }
@@ -910,7 +913,7 @@ a {
     }
     .terms {
         margin-top: 1em;
-        font-size: 0.8rem;
+        font-size: 1rem;
         padding: 5px 28px;
     }
 }
