@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-    title: Settlement API
+    title: API de Depósitos
     description: >-
-        Settlement API esta diseñado para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
+        La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
     contact:
         name: Soporte a documentación de la API
         email: joaquin.romo@clipdashboard.com
@@ -11,13 +11,13 @@ info:
         url: http://www.apache.org/licenses/LICENSE-2.0.html
     version: 1.0.0
 servers:
-    - description: URL de la Settlement API de Clip
-      url:  https://stageapi-gw.payclip.com
+    - description: URL de la API de Depósitos de Clip
+      url: https://api-gw.payclip.com/
 tags:
     - name: Settlements
       description: El recurso **settlements** permite obtener reportes de los depósitos realizados en un periodo determinado.
 security:
-  -   ApiKeyAuth: [] # use the same name as under securitySchemes
+    - ApiKeyAuth: [] # use the same name as under securitySchemes
 paths:
     /settlements:
         get:
@@ -28,7 +28,7 @@ paths:
                 Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
             operationId: settlements
             security:
-                -  ApiKeyAuth: []
+                - apiKeyAuth: []
             parameters:
                 - name: x-api-key
                   in: header
@@ -84,6 +84,8 @@ paths:
             description: >-
                 Genera un reporte con los detalles del depósito basado en su **Settlement ID**.
             operationId: deposit
+            security:
+                - apiKeyAuth: []
             parameters:
                 - name: api-key
                   in: header
@@ -173,7 +175,7 @@ components:
                     type: string
                     description: URL detalle.
                     format: URL
-                    example: “https://testapi-gw.payclip.com/mereconciliation/settlements/WJ8QHSCJV”
+                    example: “https://api-gw.payclip.com/settlements/WJ8QHSCJV”
                 status:
                     type: string
                     description: Estado del reporte.
@@ -245,7 +247,7 @@ components:
                     description: Fecha de creación. (AAAA-MM-DD)
                     example: "2019-10-14"
                 transaction_amount:
-                    type: string
+                    type: float
                     description: Monto de la transacción en pesos.
                     example: 1265
                 installments:
@@ -253,7 +255,7 @@ components:
                     description: Meses sin intereses. Cuando el valor sea 'false', 'monthly_term' tendrá un valor 'null'.
                     example: true
                 tip:
-                    type: string
+                    type: float
                     description: Monto de la propina en pesos.
                     example: 170
                 monthly_term:
@@ -267,19 +269,19 @@ components:
                     description: Porcentaje de comisión.
                     example: 0.036
                 fee:
-                    type: string
+                    type: float
                     description: Comisión en pesos.
                     example: 45.54
                 tax:
-                    type: string
+                    type: float
                     description: IVA.
                     example: 7.29
                 total_retention:
-                    type: string
+                    type: float
                     description: Retención total en pesos.
                     example: 52.83
                 settled_amount:
-                    type: string
+                    type: float
                     description: Cantidad a depositar.
                     example: 1265
                 sop_days:

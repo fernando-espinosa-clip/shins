@@ -32,9 +32,6 @@ Una <a href="https://dashboard.clip.mx/sign_up">cuenta Clip</a> activa (para ace
 <li>
 Un token de <a href="#apikey">autenticación</a>.
 </li>
-<li>
-<a href="#configurar-dispositivo">Configurar el dispositivo</a> Clip Pro para desplegar las transacciones pendientes.
-</li>
 </ul>
 <h2>Elementos de la API Punto de Venta de Clip</h2>
 <p>
@@ -87,26 +84,4 @@ Al finalizar el proceso de pago en la terminal Clip, se cambia el estado de la t
 </ol>
 <p class="pt-5">
 <img src="images/FlowDiagramAPI.png" alt="Diagrama de Flujo de API Punto de Venta" />
-</p>
-<h2 id="configurar-dispositivo">Configurar el dispositivo para mostrar las transacciones</h2>
-<p>Para completar el proceso de pago en la terminal Clip es necesario mostrar en el dispositivo las transacciones con estatus Pendiente iniciadas en el punto de venta.</p>
-<p>Para configurar el dispositivo Clip Pro, realiza los siguientes pasos:</p>
-<ol>
-<li>
-Ir al menú de configuración dentro de tu app Clip (símbolo de engranaje).
-</li>
-<li>
-Ir a la sección de Seguridad.
-</li>
-<li>
-Activar la opción “Transacciones B2B”.
-</li>
-<li>
-Regresar al menú principal.
-</li>
-</ol>
-<p>Una vez completados estos 4 pasos, podrás ver las transacciones pendientes en tu dispositivo Clip Pro como se muestra en la siguiente imagen.</p>
-<p class="image-grid">
-<img src="images/configurar-dispositivo.gif" alt="Configuración del dispositivo para mostrar transacciones pendientes">
-<img src="images/TransaccionPendiente.png" alt="Transacciones Pendientes">
 </p>
