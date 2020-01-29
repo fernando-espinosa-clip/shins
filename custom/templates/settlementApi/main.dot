@@ -45,7 +45,7 @@ Estos Son los diferentes ambientes definidos en la API:
 
 {{ } /* of resources */ }}
 
-{{? data.api.components && data.api.components.schemas }}
+{{? data.api.components && data.api.components.schemas && false}}
 # Schemas
 
 {{ for (var s in data.components.schemas) { }}
