@@ -1,5 +1,5 @@
-<h1 id="intro">Settlement API de Clip (v 1.0)</h1>
-<p>Contacto: <a href="mailto:devsupport@payclip.com">developer@payclip.com</a>.</p>
+<h1 id="intro">Clip API Reference</h1>
+<p>Contacto: <a href="mailto:developers@clip.mx">developers@clip.mx</a>.</p>
 {{#def.intro}}
 {{#def.security}}
 <h1 id="{{=data.title_prefix}}">{{=data.api.info && data.api.info.title}} {{=data.version}}</h1>
@@ -10,7 +10,7 @@
 
 {{? data.api.servers }}
 <div class="docs-note info enviroments">
-Estos Son los diferentes ambientes definidos en la API:
+Estos son los diferentes ambientes definidos en la API:
 {{~data.api.servers :s}}
 <a href="{{=s.url}}">{{=s.url}}</a> {{=s.description || ''}}
 {{~}}

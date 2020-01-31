@@ -1,4 +1,5 @@
-<h1 id="primeros-pasos">Primeros Pasos</h1>
+<h1 id="intro">Introducción</h1>
+<h2 id="primeros-pasos">Primeros Pasos</h2>
 <div class="h2 mt-0 pb-3">Introducción a la Settlement API de Clip</div>
 <p>
 La Settlement API de Clip está diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
@@ -34,7 +35,7 @@ La Settlement API de Clip se comunica a través de llamadas y respuestas en form
 
 <div class="h2 mt-0 pb-3">¿Qué necesito antes de empezar?</div>
 <p>
-Para poder desarrollar con la API Punto de Venta de Clip se requiere:
+Para poder desarrollar con la API de Clip se requiere:
 </p>
 <ul>
 <li>

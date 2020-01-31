@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: CLIP APIs
+  title: Endpoints
   description: >- 
     Settlement API esta diseñado para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
   contact:
