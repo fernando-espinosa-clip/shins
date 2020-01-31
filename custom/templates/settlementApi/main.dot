@@ -1,6 +1,7 @@
 <h1 id="intro">Clip API Reference</h1>
 <p>Contacto: <a href="mailto:developers@clip.mx">developers@clip.mx</a>.</p>
 {{#def.intro}}
+{{#def.documentation}}
 {{#def.security}}
 <h1 id="{{=data.title_prefix}}">{{=data.api.info && data.api.info.title}} {{=data.version}}</h1>
 

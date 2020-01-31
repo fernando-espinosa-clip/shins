@@ -1,37 +1,11 @@
 <h1 id="intro">Introducción</h1>
 <h2 id="primeros-pasos">Primeros Pasos</h2>
-<div class="h2 mt-0 pb-3">Introducción a la Settlement API de Clip</div>
 <p>
-La Settlement API de Clip está diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
-</p>
-<div class="h2 mt-0 pb-3">¿Qué puedo hacer con la Settlement API de Clip?</div>
-<p>
-Los desarrolladores pueden usar la Settlement API para obtener reportes de los depósitos realizados desde Clip al comerciante.
+Los desarrolladores pueden usar la API para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
 </p>
 <p>
-Las acciones disponibles con la Settlement API de Clip son:
+La API de Clip sigue los principios REST para el desarrollo de APIs y se comunica a través de llamadas y respuestas en formato JSON.
 </p>
-<ul>
-<li>
-Obtener un reporte por periodo con un resumen del total de depósitos.
-</li>
-<li>
-Obtener un reporte detallado de las transacciones individuales de un reporte de periodo.
-</li>
-</ul>
-
-<h2>Elementos de la Settlement API de Clip</h2>
-<p>
-La Settlement API de Clip se comunica a través de llamadas y respuestas en formato JSON. Con las llamadas y respuestas de la Settlement API se puede interactuar con los siguientes elementos:
-</p>
-<ul>
-<li>
-<strong>Settlements:</strong> El recurso settlements contiene un resumen de los depósitos realizados en un periodo no mayor a 90 días. Cada reporte se identifica por un <strong>settlement_id.</strong>
-</li>
-<li>
-<strong>Settlement details:</strong> El recurso settlement details contiene un reporte detallado con los todas las transacciones del periodo relacionadas a un settlement_id.
-</li>
-</ul>
 
 <div class="h2 mt-0 pb-3">¿Qué necesito antes de empezar?</div>
 <p>
@@ -45,4 +19,27 @@ Una <a href="https://dashboard.clip.mx/sign_up">cuenta Clip</a> activa.
 Un token de <a href="#apikey">autenticación</a>.
 </li>
 </ul>
+
+<h2 id="methods">Métodos HTTP</h2>
+<p>
+La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
+</p>
+<ul>
+<li>
+<strong>GET:</strong> Una llamada GET te permite obtener información de tu cuenta o aplicación.
+</li>
+<li>
+<strong>POST:</strong> Una llamada POST te permite crear elementos nuevos en tu cuenta o aplicación.
+</li>
+</ul>
+
+<h2 id="responses">Respuestas</h2>
+<p>
+La API de Clip está desarrollada para regresar códigos de respuesta HTTP estándar. Todas las respuestas con código 200 incluyen un objeto JSON con la información solicitada o con un mensaje descriptivo de confirmación.
+</p>
+
+<h2 id="errors">Errores</h2>
+<p>
+La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
+</p>
 
