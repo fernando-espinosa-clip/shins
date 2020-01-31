@@ -31,7 +31,7 @@ paths:
     get:
       tags:
       - Depósitos
-      summary: Detalle de depósitos por periodo.
+      summary: Obtener resumen de depósitos por periodo.
       description: >-
         Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
       operationId: settlements
@@ -88,7 +88,7 @@ paths:
     get:
       tags:
       - Depósitos
-      summary: Detalle desglosado para un depósito en fecha seleccionada.
+      summary: Obtener reporte desglosado de depósitos.
       description: >- 
         Genera un reporte con los detalles del depósito basado en su **Settlement ID**.
       operationId: deposit
@@ -151,7 +151,7 @@ paths:
     post:
       tags:
         - Pagos
-      summary: Registrar una transacción
+      summary: Registrar una transacción.
       operationId: Payment Request
       requestBody:
         content:
