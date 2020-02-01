@@ -47,7 +47,6 @@ La API de Clip está habilitada para comunicarse utilizando los siguientes méto
 <p>
 Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como <a href="https://www.getpostman.com/downloads/">Postman</a>. Para poder realizar llamadas de prueba es necesario obtener un token de <a href="#apikey">autenticación</a>.
 </p>
-<div class="h2 mt-0 pb-3">URLs de prueba con Postman</div>
 <p>
 Puedes importar colecciones de Postman para cada una de las APIs de Clip en los siguientes enlaces:
 </p>
