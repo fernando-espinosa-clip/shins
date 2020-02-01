@@ -35,7 +35,7 @@ La API de Clip está habilitada para comunicarse utilizando los siguientes méto
 
 <h2 id="responses">Respuestas</h2>
 <p>
-La API de Clip está desarrollada para regresar códigos de respuesta HTTP estándar. Todas las respuestas con código 200 incluyen un objeto JSON con la información solicitada o con un mensaje descriptivo de confirmación.
+La API de Clip está desarrollada para regresar códigos de respuesta HTTP estándar. Todas las respuestas con código 200 incluyen un objeto JSON con la información solicitada (llamadas GET) o con un mensaje descriptivo de confirmación (llamadas POST).
 </p>
 
 <h2 id="errors">Errores</h2>
@@ -43,3 +43,19 @@ La API de Clip está desarrollada para regresar códigos de respuesta HTTP está
 La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
 </p>
 
+<h2 id="testing">Pruebas</h2>
+<p>
+Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como <a href="https://www.getpostman.com/downloads/">Postman</a>. Para poder realizar llamadas de prueba es necesario obtener un token de <a href="#apikey">autenticación</a>.
+</p>
+<div class="h2 mt-0 pb-3">URLs de prueba con Postman</div>
+<p>
+Puedes importar colecciones de Postman para cada una de las APIs de Clip en los siguientes enlaces:
+</p>
+<ul>
+    <li>
+        <strong>API de Pagos:</strong><a href="https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e">https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e</a>
+    </li>
+    <li>
+        <strong>API de Depósitos:</strong><a href="https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e">https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e</a>
+    </li>
+</ul>
