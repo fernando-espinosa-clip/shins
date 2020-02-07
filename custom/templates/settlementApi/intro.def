@@ -1,5 +1,5 @@
 <h1 id="intro">Introducción</h1>
-<h2 id="primeros-pasos">Primeros Pasos</h2>
+<h2 id="getting-started">Primeros Pasos</h2>
 <p>
 Los desarrolladores pueden usar la API para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
 </p>
@@ -13,14 +13,14 @@ Para poder desarrollar con la API de Clip se requiere:
 </p>
 <ul>
 <li>
-Una <a href="https://dashboard.clip.mx/sign_up">cuenta Clip</a> activa.
+Una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta Clip</a> activa.
 </li>
 <li>
 Un token de <a href="#apikey">autenticación</a>.
 </li>
 </ul>
 
-<h2 id="methods">Métodos HTTP</h2>
+<div class="h2 mt-0 pb-3">Métodos HTTP</div>
 <p>
 La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
 </p>

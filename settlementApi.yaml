@@ -14,10 +14,10 @@ servers:
 - description: URL base para todas las APIs de Clip
   url: https://api-gw.payclip.com/
 tags:
-- name: Depósitos
+- name: API de Depósitos
   description: |
     Settlement API esta diseñado para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones..
-- name: Pagos
+- name: API de Pagos
   description: |
     El recurso **paymentrequest** permite registrar una transacción en el dispositivo Clip desde una aplicación externa de punto de venta.  
     
@@ -30,7 +30,7 @@ paths:
   /settlements:
     get:
       tags:
-      - Depósitos
+      - API de Depósitos
       summary: Obtener resumen de depósitos por periodo.
       description: >-
         Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
@@ -87,7 +87,7 @@ paths:
   /settlements/{settlement_id}:
     get:
       tags:
-      - Depósitos
+      - API de Depósitos
       summary: Obtener reporte desglosado de depósitos.
       description: >- 
         Genera un reporte con los detalles del depósito basado en su **Settlement ID**.
@@ -150,7 +150,7 @@ paths:
   /paymentrequest:
     post:
       tags:
-        - Pagos
+        - API de Pagos
       summary: Registrar una transacción.
       operationId: Payment Request
       requestBody:

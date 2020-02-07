@@ -1,4 +1,4 @@
-<h1 id="intro">API de Clip</h1>
+<h1>API de Clip</h1>
 <p>Contacto: <a href="mailto:developers@clip.mx">developers@clip.mx</a>.</p>
 {{#def.intro}}
 {{#def.documentation}}
