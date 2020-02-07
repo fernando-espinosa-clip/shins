@@ -48,13 +48,3 @@ La API de Clip está habilitada para comunicarse utilizando los siguientes méto
 Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como <a href="https://www.getpostman.com/downloads/">Postman</a>. Para poder realizar llamadas de prueba es necesario obtener un token de <a href="#apikey">autenticación</a>.
 </p>
 <p>
-Puedes importar colecciones de Postman para cada una de las APIs de Clip en los siguientes enlaces:
-</p>
-<ul>
-    <li>
-        <strong>API de Pagos:</strong> <a href="https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e">https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e</a>
-    </li>
-    <li>
-        <strong>API de Depósitos:</strong> <a href="https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e">https://www.getpostman.com/collections/3ad62d949c9b57cfdb8e</a>
-    </li>
-</ul>
