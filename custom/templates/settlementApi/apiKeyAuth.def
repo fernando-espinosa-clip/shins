@@ -10,13 +10,12 @@
 <p>El token de autenticación se envía como un parámetro de encabezado o “Header” de la llamada a la API.</p>
 {{~ sd :k}}
 
-```CURL
-curl -X GET \
- https://api-gw.payclip.com/settlements/ \
- -H ‘Accept: application/json’ \
- -H ‘Content-Type: application/json; charset=UTF-8’ \
- -H ‘Host: api-gw.payclip.com’ \
- -H ‘x-api-key: [x-api-key token]’ \
+```http
+GET https://api-gw.payclip.com/settlements/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json; charset=UTF-8
+Host: api-gw.payclip.com
+x-api-key: [x-api-key token]
 ```
 
 El siguiente bloque de código muestra un ejemplo de una llamada CURL a la API de Depósitos de Clip. El nombre del parámetro es: <span class="tags gray">{{=k.name}}</span>, y se ubica en los parámetros de: <span class="tags purple">{{=k.in}}</span>

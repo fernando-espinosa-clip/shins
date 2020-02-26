@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Endpoints
   description: >- 
-    Settlement API esta diseñado para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
+    Los desarrolladores pueden usar la API de Clip para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
   contact:
     name: Soporte a documentación de la API
     email: joaquin.romo@clipdashboard.com
@@ -11,12 +11,12 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- description: URL base para todas las APIs de Clip
+- description: URL base del ambiente de producción. 
   url: https://api-gw.payclip.com/
 tags:
 - name: API de Depósitos
   description: |
-    Settlement API esta diseñado para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones..
+    La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en los últimos 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener un reporte detallado de sus transacciones.
 - name: API de Pagos
   description: |
     El recurso **paymentrequest** permite registrar una transacción en el dispositivo Clip desde una aplicación externa de punto de venta.  
@@ -138,7 +138,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/settlement_details'
+                  $ref: '#/components/schemas/settlement_response'
         "400":
           description: Bad request.
         "401":
@@ -194,6 +194,18 @@ components:
           type: number
           description: Total antes de impuestos.
           example: 1455.49
+        total_fee:
+          type: number
+          description: Cantidad total de comisión sobre la cantidad antes de impuestos (gross_amount * 0.036)
+          example:
+        total_tax:
+          type: number
+          description: Cantidad de impuestos por IVA sobre la comisión (total_fee * 0.16)
+          example:
+        total_retention:
+          type: number
+          description: Cantidad total de comisión e impuestos a deducir (total_fee + total_tax)
+          example:
         settled_amount:
           type: number
           description: Total después de impuestos.
@@ -202,17 +214,23 @@ components:
           type: string
           description: Transacciones total en reporte.
           example: 2
-        details_url:
-          type: string
-          description: URL detalle.
-          format: URL
-          example: “https://testapi-gw.payclip.com/mereconciliation/settlements/WJ8QHSCJV”
+        links:
+          $ref: '#/components/schemas/links'
         status:
           type: string
           description: Estado del reporte.
           example: "sent"
-
-    settlement_details:
+    
+    settlement_response:
+      type: object  
+      properties:
+        settlement:
+          $ref: '#/components/schemas/settlement'
+        links:
+          $ref: '#/components/schemas/links'
+    
+    settlement:
+      type: object
       properties:
         settlement_id:
           type: string
@@ -231,7 +249,7 @@ components:
           example: 1455.49
         settled_amount:
           type: number
-          description: Total después de impuestos.
+          description: Total final a depositar.
           example: 1455.49
         status:
           type: string
@@ -241,14 +259,11 @@ components:
           example: 2
         details:
           type: array
-          description: Arreglo de objetos 'details_object'.
+          description: Arreglo de objetos 'details'.
           items: 
-            $ref: '#/components/schemas/details_object'
-        paging:
-          type: string
-          description: Token de paginación que se envía en el parámetro de consulta (query parameter) <code>paging</code>.
+            $ref: '#/components/schemas/details'
     
-    details_object:
+    details:
       type: object
       properties:
         date:
@@ -284,7 +299,10 @@ components:
           example: 1265
         installments:
           type: boolean
-          description: Meses sin intereses. Cuando el valor sea 'false', 'monthly_term' tendrá un valor 'null'.
+          description: | 
+            Meses sin intereses. 
+            
+            Cuando el valor sea 'false', 'monthly_term' tendrá un valor 'null'.
           example: true
         tip:
           type: string
@@ -294,8 +312,8 @@ components:
           type: string
           description: Plazo para mensualidades.
           nullable: true
-          enum: [3,6,9,12]
-          example: 12
+          enum: ['3','6','9','12']
+          example: '12'
         rate:
           type: string
           description: Porcentaje de comisión.
@@ -320,10 +338,22 @@ components:
           type: string
           description: Tiempo a depositar.
           example: 1
+        payment_method:
+          type: string
+          description: |
+            Especifica la categoría de la forma de pago. 
+            
+            -CREDIT: La tarjeta es de crédito.
+            
+            -DEBIT: La tarjeta es de débito.
+            
+            -OTHER: La tarjeta no es de débito ni crédito, por ejemplo, de vales. 
+          enum: ['CREDIT', 'DEBIT', 'OTHER']
+          example: 'DEBIT'  
         card_brand:
           type: string
           description: Tipo de tarjeta.
-          example: "Visa"
+          example: "Mastercard"
         card_last4:
           type: string
           description: Últimos cuatro dígitos de la tarjeta con la que se hizo el pago.
@@ -342,7 +372,39 @@ components:
           description: Correo electrónico del usuario.
           format: email
           example: "user@example.com"  
+    
+    links:
+      type: object
+      description: Objeto de tipo Link
+      properties:
+        self: 
+          $ref: "#/components/schemas/self" 
+        next:
+          $ref: "#/components/schemas/next" 
+    
+    self: 
+      type: object
+      description: Objeto de referencia al reporte detallado para el settlement_id correspondiente.
+      properties:
+        href:
+          type: string
+          example: "/settlements/VN92NHT4V"
+        method:
+          type: string
+          example: 'GET'
           
+    next: 
+      type: object
+      description: Objeto que contiene el URL de paginación.
+      properties:
+        href:
+          type: string
+          example: "/settlements/GHWRWSFLW?page_size=1&page=eyJjb21wb25lbnRzIjp7Iml0ZW1faWQiOnsibmFtZSI6Iml0ZW1faWQiLCJ2YWx1ZSI6IlRSfEdIV1JXU0ZMV3wyMDIwLTAxLTE2VDIyOjUyOjUzWiJ9LCJtZXJjaGFudF9pZCI6eyJuYW1lIjoibWVyY2hhbnRfaWQiLCJ2YWx1ZSI6ImE3Yzk3MGIzLTU2NzEtNDU4Zi04ZjRjLTBhNThiOWJjMTRjZSJ9fX0="
+        method:
+          type: string
+          example: 'GET'
+      
+      
     RegisterTransaccion:
             properties:
                 amount:
@@ -369,6 +431,7 @@ components:
                 - amount
                 - reference
                 - message
+    
     200TransactionOk:
             type: object
             properties:
@@ -399,5 +462,4 @@ components:
             content:
                 application/json:
                     schema:
-                        $ref: "#/components/schemas/Error"      
-          
+                        $ref: "#/components/schemas/Error"
