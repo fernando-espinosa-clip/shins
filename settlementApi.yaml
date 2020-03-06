@@ -1,312 +1,932 @@
 openapi: 3.0.0
 info:
-    title: API de Depósitos
-    description: >-
-        La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
-    contact:
-        name: Soporte a documentación de la API
-        email: joaquin.romo@clipdashboard.com
-    license:
-        name: Apache 2.0
-        url: http://www.apache.org/licenses/LICENSE-2.0.html
-    version: 1.0.0
+  title: Endpoints
+  description: >- 
+    Los desarrolladores pueden usar la API de Clip para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
+  contact:
+    name: Soporte a documentación de la API
+    email: joaquin.romo@clipdashboard.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
 servers:
-    - description: URL de la API de Depósitos de Clip
-      url: https://api-gw.payclip.com/
+- description: URL base del ambiente de producción. 
+  url: https://api-gw.payclip.com/
 tags:
-    - name: Settlements
-      description: El recurso **settlements** permite obtener reportes de los depósitos realizados en un periodo determinado.
+- name: API de Depósitos
+  description: |
+    La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en los últimos 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener un reporte detallado de sus transacciones.
+- name: API de Pagos
+  description: |
+    El recurso **paymentrequest** permite registrar una transacción en el dispositivo Clip desde una aplicación externa de punto de venta.  
+    
+    La API de Clip de Punto de Venta (POS API, en inglés, Point of Sale) permite a las aplicaciones de punto de venta de terceros abrir la aplicación Clip para procesar pagos de una persona usando el dispositivo terminal de Clip.  
+    
+    Los desarrolladores pueden usar la POS API para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la POS API está disponible para el dispositivo Clip Pro.
 security:
     - ApiKeyAuth: [] # use the same name as under securitySchemes
 paths:
-    /settlements:
-        get:
-            tags:
-                - Settlements
-            summary: Detalle de depósitos por periodo.
-            description: >-
-                Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
-            operationId: settlements
-            security:
-                - apiKeyAuth: []
-            parameters:
-                - name: x-api-key
-                  in: header
-                  description: Confidential key.
-                  required: true
-                  style: simple
-                  explode: false
-                  schema:
-                      type: string
-                - name: from
-                  in: query
-                  description: Fecha de inicio del reporte ej. 2019-10-14 (AAAA-MM-DD)
-                  required: true
-                  style: form
-                  explode: true
-                  schema:
-                      type: string
-                      format: date
-                      example: "2019-10-14"
-                - name: to
-                  in: query
-                  description: >-
-                      Fecha de fin del reporte ej. 2019-11-14 (AAAA-MM-DD). Nota: La fecha de fin no puede ser mayor a 90 días posteriores a la fecha de inicio en el parámetro  <code>from</code>.
-                  required: true
-                  style: form
-                  explode: true
-                  schema:
-                      type: string
-                      format: date
-                      example: "2019-11-14"
-            responses:
-                "200":
-                    description: OK.
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/settlements'
-                "400":
-                    description: Bad request.
-                "401":
-                    description: Unauthorized.
-                "403":
-                    description: Forbidden.
-                "500":
-                    description: Internal Server Error.
-    /settlements/{settlement_id}:
-        get:
-            tags:
-                - Settlements
-            summary: Detalle desglosado para un depósito en fecha seleccionada.
-            description: >-
-                Genera un reporte con los detalles del depósito basado en su **Settlement ID**.
-            operationId: deposit
-            security:
-                - apiKeyAuth: []
-            parameters:
-                - name: api-key
-                  in: header
-                  description: Confidential key.
-                  required: true
-                  style: simple
-                  explode: false
-                  schema:
-                      type: string
-                - name: settlement_id
-                  in: path
-                  description: ID del depósito a detallar.
-                  required: true
-                  style: simple
-                  explode: false
-                  schema:
-                      type: string
-                      example: WJ8QHSCJV
-                - name: page_size
-                  in: query
-                  description: Número de elementos a mostrar por página. El valor máximo de elementos por página es de 100.
-                  required: false
-                  explode: false
-                  schema:
-                      type: integer
-                      maximum: 100
-                      minimum: 1
-                      default: 100
-                  example: 50
-                - name: paging
-                  in: query
-                  description: Token de paginación requerido cuando los elementos a mostrar exceden el tamaño de paginación definido en el parámetro <code>paging</code>.
-                  required: false
-                  explode: false
-                  schema:
-                      type: string
-            responses:
-                "200":
-                    description: OK.
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/settlement_details'
-                "400":
-                    description: Bad request.
-                "401":
-                    description: Unauthorized.
-                "403":
-                    description: Forbidden.
-                "500":
-                    description: Internal Server Error.
+  /settlements:
+    get:
+      tags:
+      - API de Depósitos
+      summary: Obtener resumen de depósitos por periodo.
+      description: >-
+        Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
+      operationId: settlements
+      security:
+        - ApiKeyAuth: []
+      parameters:
+      - name: api-key
+        in: header
+        description: Confidential key.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Fecha de inicio del reporte ej. 2019-10-14 (AAAA-MM-DD)
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+          example: "2019-10-14"
+      - name: to
+        in: query
+        description: >- 
+          Fecha de fin del reporte ej. 2019-11-14 (AAAA-MM-DD). Nota: La fecha de fin no puede ser mayor a 90 días posteriores a la fecha de inicio en el parámetro  <code>from</code>. 
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+          example: "2019-11-14"
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/settlements_response'
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "500":
+          description: Internal Server Error.
+  /settlements/{settlement_report_id}:
+    get:
+      tags:
+      - API de Depósitos
+      summary: Obtener reporte desglosado de depósitos.
+      description: >- 
+        Genera un reporte con los detalles del depósito basado en su **Settlement Report ID**.
+      operationId: deposit
+      security:
+        - ApiKeyAuth: []
+      parameters:
+      - name: api-key
+        in: header
+        description: Confidential key.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: settlement_report_id
+        in: path
+        description: ID del depósito a detallar.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: WJ8QHSCJV
+      - name: page_size
+        in: query
+        description: Número de elementos a mostrar por página. El valor máximo de elementos por página es de 100. 
+        required: false
+        explode: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 100
+        example: 50
+      - name: paging
+        in: query
+        description: Token de paginación requerido cuando los elementos a mostrar exceden el tamaño de paginación definido en el parámetro <code>paging</code>.
+        required: false
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/settlement_response'
+                  
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "500":
+          description: Internal Server Error.
+  /paymentrequest:
+    post:
+      tags:
+        - API de Pagos
+      summary: Registrar una transacción.
+      operationId: Payment Request
+      requestBody:
+        content:
+          application/vnd.com.payclip.v1+json:
+            schema:
+             $ref: "#/components/schemas/RegisterTransaccion"
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: Respuesta del servidor al momento de crear una transacción.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/200TransactionOk"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
 components:
-    securitySchemes:
+  securitySchemes:
         ApiKeyAuth: # arbitrary name for the security scheme
             type: apiKey
             in: header # can be "header", "query" or "cookie"
             name: x-api-key # name of the header, query parameter or cookie
             description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la POS API.
-    schemas:
+  schemas:
+    settlements:
+      type: object
+      properties:
+        disbursement_date:
+          type: string
+          format: date
+          description: Fecha de pago.
+          example: "2020-01-13"
+        settlement_report_id:
+          type: string
+          description: ID del reporte.
+          example: "W472RZQKV"
+        gross_amount:
+          type: number
+          description: Total antes de impuestos.
+          example: 9300
+        total_fee:
+          type: number
+          description: Cantidad total de comisión sobre la cantidad antes de impuestos 
+          example: 360.0
+        total_tax:
+          type: number
+          description: Cantidad de impuestos por IVA sobre la comisión 
+          example: 62.14
+        total_retention:
+          type: number
+          description: Cantidad total de comisión e impuestos a deducir (total_fee + total_tax)
+          example: 388.38
+        disbursed_net_amount:
+          type: number
+          description: Total después de impuestos.
+          example: 8911.62
+        total_transactions:
+          type: string
+          description: Transacciones total en reporte.
+          example: 22
+        links:
+          type: object
+          description: Objeto de tipo Link
+          properties:
+            self: 
+              $ref: "#/components/schemas/self" 
+        status:
+          type: string
+          description: Estado del reporte.
+          example: "sent"
+    
+    settlement_response:
+      type: object  
+      properties:
+        settlement:
+          $ref: '#/components/schemas/settlement'
+        links:
+          type: object
+          description: Objeto de tipo Link
+          properties:
+            next:
+              $ref: "#/components/schemas/next"
+          
+    settlements_response:
+      type: object  
+      properties:
         settlements:
-            type: object
-            properties:
-                settlement_date:
-                    type: string
-                    format: date
-                    description: Fecha de pago.
-                    example: "2019-10-15"
-                settlement_id:
-                    type: string
-                    description: ID del reporte.
-                    example: "WJ8QHSCJV"
-                gross_amount:
-                    type: number
-                    description: Total antes de impuestos.
-                    example: 1455.49
-                settled_amount:
-                    type: number
-                    description: Total después de impuestos.
-                    example: 1435.49
-                total_count:
-                    type: string
-                    description: Transacciones total en reporte.
-                    example: 2
-                details_url:
-                    type: string
-                    description: URL detalle.
-                    format: URL
-                    example: “https://api-gw.payclip.com/settlements/WJ8QHSCJV”
-                status:
-                    type: string
-                    description: Estado del reporte.
-                    example: "sent"
-
-        settlement_details:
-            properties:
-                settlement_id:
-                    type: string
-                    description: ID del reporte.
-                    example: "WJ8QHSCJV"
-                merchant_name:
-                    type: string
-                    example: Octavio Martinez
-                settlement_date:
-                    type: string
-                    description: fecha de pago
-                    example: "2019-10-15"
-                gross_amount:
-                    type: number
-                    description: Total antes de impuestos.
-                    example: 1455.49
-                settled_amount:
-                    type: number
-                    description: Total después de impuestos.
-                    example: 1455.49
-                status:
-                    type: string
-                    example: "sent"
-                total_count:
-                    type: number
-                    example: 2
-                details:
-                    type: array
-                    items:
-                        $ref: '#/components/schemas/details_object'
-                paging:
-                    type: string
-                    description: Token de paginación que se envía en el parámetro de query string <code>paging</code>.
-
-        details_object:
-            type: object
-            properties:
-                date:
-                    type: string
-                    format: date
-                    description: Fecha de creación de la transacción.
-                    example: "2019-10-14"
-                transactions:
-                    type: array
-                    description: Arreglo de objetos 'Transaction'.
-                    items:
-                        $ref: '#/components/schemas/transaction'
-
-        transaction:
-            type: object
-            properties:
-                transaction_id:
-                    type: string
-                    description: ID de la transacción.
-                    example: "5mUV5Dt"
-                settlement_id:
-                    type: string
-                    description: ID del reporte.
-                    example: "WJ8QHSCJV"
-                created_at:
-                    type: string
-                    format: date
-                    description: Fecha de creación. (AAAA-MM-DD)
-                    example: "2019-10-14"
-                transaction_amount:
-                    type: float
-                    description: Monto de la transacción en pesos.
-                    example: 1265
-                installments:
-                    type: boolean
-                    description: Meses sin intereses. Cuando el valor sea 'false', 'monthly_term' tendrá un valor 'null'.
-                    example: true
-                tip:
-                    type: float
-                    description: Monto de la propina en pesos.
-                    example: 170
-                monthly_term:
-                    type: string
-                    description: Plazo para mensualidades.
-                    nullable: true
-                    enum: [3,6,9,12]
-                    example: 12
-                rate:
-                    type: string
-                    description: Porcentaje de comisión.
-                    example: 0.036
+          type: array
+          items:
+            $ref: '#/components/schemas/settlements'
+    
+    settlement:
+      type: object
+      properties:
+        settlement_report_id:
+          type: string
+          description: ID del reporte.
+          example: "W472RZQKV"
+        merchant_name:
+          type: string
+          example: Clip
+        disbursement_date:
+          type: string
+          description: fecha de pago
+          example: "2020-01-13"
+        gross_amount:
+          type: number
+          description: Total antes de impuestos.
+          example: 9300
+        disbursed_net_amount:
+          type: number
+          description: Total final a depositar.
+          example: 8911.62
+        total_transactions:
+          type: number
+          example: 22
+        details:
+          type: array
+          description: Arreglo de objetos 'details'.
+          items: 
+            $ref: '#/components/schemas/details'
+    
+    details:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Fecha de creación de la transacción.
+          example: "2020-01-10"
+        payments:
+          type: array
+          description: Arreglo de objetos 'payment'.
+          items:
+            $ref: '#/components/schemas/payment'
+      
+    payment:
+      type: object
+      properties:
+        receipt_no:
+          type: string
+          description: ID de la transacción.
+          example: "liNzWOR"
+        payment_date:
+          type: string
+          format: date
+          description: Fecha de creación de la transacción. (AAAA-MM-DD)
+          example: "2020-01-10"
+        amount:
+          type: string
+          description: Monto de la transacción en pesos.
+          example: 100
+        terms:
+          type: string
+          description: Indica si el pago está diferido en mensualidades.
+          enum: ['3','6','9','12']
+          nullable: true
+          example: 
+        charges:
+          type: object
+          properties:
+            charge:
+              type: object
+              properties:
                 fee:
-                    type: float
-                    description: Comisión en pesos.
-                    example: 45.54
+                  type: string
+                  description: Comisión en pesos.
+                  example: 45.54
                 tax:
-                    type: float
-                    description: IVA.
-                    example: 7.29
-                total_retention:
-                    type: float
-                    description: Retención total en pesos.
-                    example: 52.83
-                settled_amount:
-                    type: float
-                    description: Cantidad a depositar.
-                    example: 1265
-                sop_days:
+                  type: string
+                  description: IVA.
+                  example: 7.29
+        tip:
+          type: string
+          description: Monto de la propina en pesos.
+          example: 0
+        total_retention:
+          type: string
+          description: Retención total en pesos.
+          example: 4.18
+        settled_amount:
+          type: string
+          description: Cantidad a depositar.
+          example: 95.82
+        payment_method:
+          type: string
+          description: |
+            Especifica la categoría de la forma de pago. 
+            
+            -CREDIT: La tarjeta es de crédito.
+            
+            -DEBIT: La tarjeta es de débito.
+            
+            -OTHER: La tarjeta no es de débito ni crédito, por ejemplo, de vales. 
+          enum: ['Credit', 'Debit', 'Other']
+          example: 'Credit'  
+        card:
+          type: object
+          properties:
+            brand:
+              type: string
+              description: Tipo de tarjeta.
+              example: "Mastercard"
+            last4:
+              type: string
+              description: Últimos cuatro dígitos de la tarjeta con la que se hizo el pago.
+              example: 4587
+            issuer:
+              type: string
+              description: Banco emisor de la tarjeta.
+              example: "BANAMEX"
+        merchant_invoice:
+          type: string
+          description: Referencia.
+          nullable: true
+          example:  
+        user_email:
+          type: string
+          description: Correo electrónico del usuario.
+          format: email
+          example: "user@example.com"  
+    
+    links:
+      type: object
+      description: Objeto de tipo Link
+      properties:
+        self: 
+          $ref: "#/components/schemas/self" 
+        next:
+          $ref: "#/components/schemas/next" 
+    
+    self: 
+      type: object
+      description: Objeto de referencia al reporte detallado para el settlement_id correspondiente.
+      properties:
+        href:
+          type: string
+          example: "/settlements/W472RZQKV"
+        method:
+          type: string
+          example: 'GET'
+          
+    next: 
+      type: object
+      description: Objeto que contiene el URL de paginación.
+      properties:
+        href:
+          type: string
+          example: "/settlements/GHWRWSFLW?page_size=1&page=eyJjb21wb25lbnRzIjp7Iml0ZW1faWQiOnsibmFtZSI6Iml0ZW1faWQiLCJ2YWx1ZSI6IlRSfEdIV1JXU0ZMV3wyMDIwLTAxLTE2VDIyOjUyOjUzWiJ9LCJtZXJjaGFudF9pZCI6eyJuYW1lIjoibWVyY2hhbnRfaWQiLCJ2YWx1ZSI6ImE3Yzk3MGIzLTU2NzEtNDU4Zi04ZjRjLTBhNThiOWJjMTRjZSJ9fX0="
+        method:
+          type: string
+          example: 'GET'
+      
+      
+    RegisterTransaccion:
+            properties:
+                amount:
+                    description: Monto de la transacción
+                    type: number
+                assigned_user:
+                    description: Cadena de caracteres usado para identificar al usuario asignado. Formato de correo electrónico.
                     type: string
-                    description: Tiempo a depositar.
-                    example: 1
-                card_brand:
-                    type: string
-                    description: Tipo de tarjeta.
-                    example: "Visa"
-                card_last4:
-                    type: string
-                    description: Últimos cuatro dígitos de la tarjeta con la que se hizo el pago.
-                    example: 4587
-                card_issuer:
-                    type: string
-                    description: Banco emisor de la tarjeta.
-                    example: "BANAMEX"
-                payment_reference:
-                    type: string
-                    description: Referencia.
-                    nullable: true
-                    example: "Compra playeras"
-                user_email:
-                    type: string
-                    description: Correo electrónico del usuario.
                     format: email
-                    example: "user@example.com"
+                reference:
+                    description: Identificador único de transacción, puede ser cualquier cadena.
+                    type: string
+                    format: uuid
+                user_id:
+                    description: Identificador del usuario relacionado con la cuenta del clip.
+                    type: string
+                    format: uuid
+                message:
+                    description: Texto que aparecerá como referencia en la sección de cobros pendientes.
+                    type: string
+                    example: pago pendiente
+            type: object
+            required:
+                - amount
+                - reference
+                - message
+    
+    200TransactionOk:
+            type: object
+            properties:
+                code:
+                    enum: [100, 101]
+                    type: integer
+                    description: >
+                        Código de respuesta:
+                         * `100` - Transacción exitosa
+                         * `101` - Referencia ya existe
+                description:
+                    type: string
+                    description: Descripción del código de error.
+                    example: Transaction Device Saved Success        
+          
+    Error:
+            type: object
+            required:
+                - message
+            properties:
+                message:
+                    type: string
+                    description: Mensaje descriptivo del error.
+                    example: Unauthorized
+  responses:
+        Unauthorized:
+            description: Usuario no autorizado.
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/Error"openapi: 3.0.0
+info:
+  title: Endpoints
+  description: >- 
+    Los desarrolladores pueden usar la API de Clip para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
+  contact:
+    name: Soporte a documentación de la API
+    email: joaquin.romo@clipdashboard.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- description: URL base del ambiente de producción. 
+  url: https://api-gw.payclip.com/
+tags:
+- name: API de Depósitos
+  description: |
+    La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en los últimos 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener un reporte detallado de sus transacciones.
+- name: API de Pagos
+  description: |
+    El recurso **paymentrequest** permite registrar una transacción en el dispositivo Clip desde una aplicación externa de punto de venta.  
+    
+    La API de Clip de Punto de Venta (POS API, en inglés, Point of Sale) permite a las aplicaciones de punto de venta de terceros abrir la aplicación Clip para procesar pagos de una persona usando el dispositivo terminal de Clip.  
+    
+    Los desarrolladores pueden usar la POS API para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la POS API está disponible para el dispositivo Clip Pro.
+security:
+    - ApiKeyAuth: [] # use the same name as under securitySchemes
+paths:
+  /settlements:
+    get:
+      tags:
+      - API de Depósitos
+      summary: Obtener resumen de depósitos por periodo.
+      description: >-
+        Genera la información de depósitos realizados en el periodo definido en los parámetros. El periodo no puede ser mayor a tres meses de antiguedad (90 días).
+      operationId: settlements
+      security:
+        - ApiKeyAuth: []
+      parameters:
+      - name: api-key
+        in: header
+        description: Confidential key.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: |
+          La fecha de inicio no puede ser mayor a 90 días anteriores a la fecha actual. La fecha del parámetro <code>from</code> es de carácter inclusivo. 
+          
+          La fecha del día actual es parte de los 90 días del periodo máximo de consulta permitido.
+
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+          example: "2019-10-14"
+      - name: to
+        in: query
+        description: | 
+          La fecha de fin tiene que ser igual o posterior a la fecha de inicio en el parámetro <code>from</code>. 
+        
+          La fecha del parámetro <code>to</code> es de carácter inclusivo. 
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+          example: "2019-11-14"
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/settlements_response'
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "500":
+          description: Internal Server Error.
+  /settlements/{settlement_report_id}:
+    get:
+      tags:
+      - API de Depósitos
+      summary: Obtener reporte desglosado de depósitos.
+      description: >- 
+        Genera un reporte con los detalles del depósito basado en su **Settlement Report ID**.
+      operationId: deposit
+      security:
+        - ApiKeyAuth: []
+      parameters:
+      - name: api-key
+        in: header
+        description: Confidential key.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: settlement_report_id
+        in: path
+        description: |
+          ID del depósito a detallar.
+          
+          Este parámetro se obtiene de la respuesta del endpoint **GET /settlements**.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: WJ8QHSCJV
+      - name: page_size
+        in: query
+        description: Número de elementos a mostrar por página. El valor máximo de elementos por página es de 100. 
+        required: false
+        explode: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 100
+        example: 50
+      - name: paging
+        in: query
+        description: Token de paginación requerido cuando los elementos a mostrar exceden el tamaño de paginación definido en el parámetro <code>paging</code>.
+        required: false
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/settlement_response'
+                  
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "500":
+          description: Internal Server Error.
+  /paymentrequest:
+    post:
+      tags:
+        - API de Pagos
+      summary: Registrar una transacción.
+      operationId: Payment Request
+      requestBody:
+        content:
+          application/vnd.com.payclip.v1+json:
+            schema:
+             $ref: "#/components/schemas/RegisterTransaccion"
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: Respuesta del servidor al momento de crear una transacción.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/200TransactionOk"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+
+components:
+  securitySchemes:
+        ApiKeyAuth: # arbitrary name for the security scheme
+            type: apiKey
+            in: header # can be "header", "query" or "cookie"
+            name: x-api-key # name of the header, query parameter or cookie
+            description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la POS API.
+  schemas:
+    settlements:
+      type: object
+      properties:
+        disbursement_date:
+          type: string
+          format: date
+          description: Fecha de pago.
+          example: "2020-01-13"
+        settlement_report_id:
+          type: string
+          description: ID del reporte de depósitos.
+          example: "W472RZQKV"
+        gross_amount:
+          type: number
+          description: Cantidad total antes de impuestos.
+          example: 9300
+        total_fee:
+          type: number
+          description: Cantidad total de comisión sobre la cantidad antes de impuestos.
+          example: 360.0
+        total_tax:
+          type: number
+          description: Cantidad de impuestos por IVA sobre la comisión. 
+          example: 62.14
+        total_retention:
+          type: number
+          description: Cantidad total de comisión e impuestos a deducir. (total_fee + total_tax + installment_fee)
+          example: 388.38
+        disbursed_net_amount:
+          type: number
+          description: Cantidad a depositar después de impuestos.
+          example: 8911.62
+        total_transactions:
+          type: string
+          description: Total  de transacciones total en reporte.
+          example: 22
+        links:
+          type: object
+          description: Objeto de tipo Link. La estructura de este  objeto sigue el diseño de arquitectura HATEOAS para la definición de vínculos de hipermedia.
+          properties:
+            self: 
+              $ref: "#/components/schemas/self" 
+    
+    settlement_response:
+      type: object
+      description: Objeto de respuesta que incluye un objeto de tipo Settlement y un objeto de tipo Links.
+      properties:
+        settlement:
+          $ref: '#/components/schemas/settlement'
+        links:
+          type: object
+          description: Objeto de tipo Link.
+          properties:
+            next:
+              $ref: "#/components/schemas/next"
+          
+    settlements_response:
+      type: object  
+      properties:
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/settlements'
+    
+    settlement:
+      type: object
+      properties:
+        settlement_report_id:
+          type: string
+          description: ID del reporte de depósitos a detallar.
+          example: "W472RZQKV"
+        merchant_name:
+          type: string
+          description: Nombre del comerciante.
+          example: Clip
+        disbursement_date:
+          type: string
+          description: Fecha de pago.
+          example: "2020-01-13"
+        gross_amount:
+          type: number
+          description: Total antes de impuestos.
+          example: 9300
+        disbursed_net_amount:
+          type: number
+          description: Cantidad a depositar después de impuestos.
+          example: 8911.62
+        total_transactions:
+          type: number
+          description: Total de transacciones que contiene el reporte.
+          example: 22
+        details:
+          type: array
+          description: Arreglo de objetos con el esquema 'details'.
+          items: 
+            $ref: '#/components/schemas/details'
+    
+    details:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Fecha del reporte.
+          example: "2020-01-10"
+        payments:
+          type: array
+          description: Arreglo de objetos con el esquema 'payment'.
+          items:
+            $ref: '#/components/schemas/payment'
+      
+    payment:
+      type: object
+      properties:
+        receipt_no:
+          type: string
+          description: ID de la transacción.
+          example: "liNzWOR"
+        payment_date:
+          type: string
+          format: date
+          description: Fecha de creación del reporte. (AAAA-MM-DD)
+          example: "2020-01-10"
+        amount:
+          type: string
+          description: Monto de la transacción en pesos.
+          example: 100
+        terms:
+          type: string
+          description: Indica si el pago está diferido en mensualidades. Cuando el pago no está diferido, su valor es <code>null</code>.
+          enum: ['3','6','9','12']
+          nullable: true
+          example: 
+        charges:
+          type: object
+          properties:
+            charge:
+              type: object
+              properties:
+                fee:
+                  type: string
+                  description: Comisión en pesos.
+                  example: 3.6
+                tax:
+                  type: string
+                  description: Cantidad de IVA.
+                  example: 0.58
+        tip:
+          type: string
+          description: Monto de la propina en pesos.
+          example: 0
+        total_retention:
+          type: string
+          description: Retención total en pesos.
+          example: 4.18
+        settled_amount:
+          type: string
+          description: Cantidad a depositar.
+          example: 95.82
+        payment_method:
+          type: string
+          description: |
+            Especifica la categoría de la forma de pago. 
+            
+            -CREDIT: La tarjeta es de crédito.
+            
+            -DEBIT: La tarjeta es de débito.
+            
+            -OTHER: La tarjeta no es de débito ni crédito, por ejemplo, tarjeta de vales. 
+          enum: ['Credit', 'Debit', 'Other']
+          example: 'Credit'  
+        card:
+          type: object
+          properties:
+            brand:
+              type: string
+              description: Tipo de tarjeta utilizada para el pago.
+              example: "Mastercard"
+            last4:
+              type: string
+              description: Últimos cuatro dígitos de la tarjeta utilizada para el pago.
+              example: 4352
+            issuer:
+              type: string
+              description: Banco emisor de la tarjeta.
+              example: "BANAMEX"
+        merchant_invoice:
+          type: string
+          description: Número proporcionado por el merchant para referencia.
+          nullable: true
+          example:  
+        user_email:
+          type: string
+          description: Correo electrónico del usuario de Clip.
+          format: email
+          example: "user@example.com"  
+    
+    self: 
+      type: object
+      description: Objeto de referencia al reporte detallado para el settlement_report_id correspondiente.
+      properties:
+        href:
+          type: string
+          description: URL que contiene los detalles del settlement_report_id correspondiente.
+          example: "/settlements/W472RZQKV"
+        method:
+          type: string
+          description: Método HTTP al que corresponde el hipervínculo.
+          example: 'GET'
+          
+    next: 
+      type: object
+      description: Objeto que contiene el URL de paginación.
+      properties:
+        href:
+          type: string
+          description: URL para mostrar el siguiente bloque o página de elementos del arreglo o lista.
+          example: "/settlements/GHWRWSFLW?page_size=1&page=eyJjb21wb25lbnRzIjp7Iml0ZW1faWQiOnsibmFtZSI6Iml0ZW1faWQiLCJ2YWx1ZSI6IlRSfEdIV1JXU0ZMV3wyMDIwLTAxLTE2VDIyOjUyOjUzWiJ9LCJtZXJjaGFudF9pZCI6eyJuYW1lIjoibWVyY2hhbnRfaWQiLCJ2YWx1ZSI6ImE3Yzk3MGIzLTU2NzEtNDU4Zi04ZjRjLTBhNThiOWJjMTRjZSJ9fX0="
+        method:
+          type: string
+          description: Método HTTP al que corresponde el intervínculo.
+          example: 'GET'
+      
+      
+    RegisterTransaccion:
+            properties:
+                amount:
+                    description: Monto de la transacción
+                    type: number
+                assigned_user:
+                    description: Cadena de caracteres usado para identificar al usuario asignado. Formato de correo electrónico.
+                    type: string
+                    format: email
+                reference:
+                    description: Identificador único de transacción, puede ser cualquier cadena.
+                    type: string
+                    format: uuid
+                user_id:
+                    description: Identificador del usuario relacionado con la cuenta del clip.
+                    type: string
+                    format: uuid
+                message:
+                    description: Texto que aparecerá como referencia en la sección de cobros pendientes.
+                    type: string
+                    example: pago pendiente
+            type: object
+            required:
+                - amount
+                - reference
+                - message
+    
+    200TransactionOk:
+            type: object
+            properties:
+                code:
+                    enum: [100, 101]
+                    type: integer
+                    description: >
+                        Código de respuesta:
+                         * `100` - Transacción exitosa
+                         * `101` - Referencia ya existe
+                description:
+                    type: string
+                    description: Descripción del código de error.
+                    example: Transaction Device Saved Success        
+          
+    Error:
+            type: object
+            required:
+                - message
+            properties:
+                message:
+                    type: string
+                    description: Mensaje descriptivo del error.
+                    example: Unauthorized
+  responses:
+        Unauthorized:
+            description: Usuario no autorizado.
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/Error"

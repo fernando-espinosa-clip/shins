@@ -2,7 +2,7 @@
 <div class="h2 mt-0 pb-3">¿Cómo obtener mi token de autenticación?</div>
 <p>Para obtener un token de autenticación sigue estos pasos:</p>
 <ol>
-    <li>Enviar un correo a <a href="mailto:developer@payclip.com">developer@payclip.com</a>.
+    <li>Enviar un correo a <a href="mailto:developers@clip.mx">developers@clip.mx</a>.
     <br>Un agente de Clip iniciará el proceso de creación del token y lo proporcionará al solicitante.</li>
     <li>Utilizar el token generado conforme a los requerimientos especificados en la documentación.</li>
 </ol>
@@ -10,16 +10,15 @@
 <p>El token de autenticación se envía como un parámetro de encabezado o “Header” de la llamada a la API.</p>
 {{~ sd :k}}
 
-```CURL
-curl -X GET \
- https:// [sandbox.payclip.com]/settlements/ \
- -H ‘Accept: application/json’ \
- -H ‘Content-Type: application/json; charset=UTF-8’ \
- -H ‘Host: [sandbox.payclip.com]’ \
- -H ‘x-api-key: [x-api-key token]’ \
+```http
+GET https://api-gw.payclip.com/settlements/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json; charset=UTF-8
+Host: api-gw.payclip.com
+x-api-key: [x-api-key token]
 ```
 
-El siguiente bloque de código muestra un ejemplo de una llamada CURL a la POS API de Clip. El nombre del parámetro es: <span class="tags gray">{{=k.name}}</span>, y se ubica en los parámetros de: <span class="tags purple">{{=k.in}}</span>
+El siguiente bloque de código muestra un ejemplo de una llamada CURL a la API de Depósitos de Clip. El nombre del parámetro es: <span class="tags gray">{{=k.name}}</span>, y se ubica en los parámetros de: <span class="tags purple">{{=k.in}}</span>
 <table>
 <tbody>
 <tr>

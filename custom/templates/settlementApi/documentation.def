@@ -1,0 +1,141 @@
+<h1 id="docs">Documentación</h1>
+<div class="h2 mt-0 pb-3">Introducción a la Settlement API de Clip</div>
+<p>
+La Settlement API de Clip está diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
+</p>
+<div class="h2 mt-0 pb-3">¿Qué puedo hacer con la Settlement API de Clip?</div>
+<p>
+Los desarrolladores pueden usar la Settlement API para obtener reportes de los depósitos realizados desde Clip al comerciante.
+</p>
+<p>
+Las acciones disponibles con la Settlement API de Clip son:
+</p>
+<ul>
+<li>
+Obtener un reporte por periodo con un resumen del total de depósitos.
+</li>
+<li>
+Obtener un reporte detallado de las transacciones individuales de un reporte de periodo.
+</li>
+</ul>
+
+<h2>Elementos de la Settlement API de Clip</h2>
+<p>
+La Settlement API de Clip se comunica a través de llamadas y respuestas en formato JSON. Con las llamadas y respuestas de la Settlement API se puede interactuar con los siguientes elementos:
+</p>
+<ul>
+<li>
+<strong>Settlements:</strong> El recurso settlements contiene un resumen de los depósitos realizados en un periodo no mayor a 90 días. Cada reporte se identifica por un <strong>settlement_id.</strong>
+</li>
+<li>
+<strong>Settlement details:</strong> El recurso settlement details contiene un reporte detallado con los todas las transacciones del periodo relacionadas a un settlement_id.
+</li>
+</ul>
+
+<h2 id="payment-flow">Flujo de procesos de la API de Pagos</h2>
+<p>
+Esta sección describe el flujo de interacciones entre el punto de venta, la API de Clip y la terminal Clip Pro.
+</p>
+<p>
+Definiciones:</p>
+<ul>
+<li>
+Usuario: Persona del establecimiento que realiza la venta.
+</li>
+<li>
+Punto de venta: Interfaz de pago perteneciente al establecimiento.
+</li>
+<li>
+Terminal Clip: Dispositivo Clip Pro con el cual se realiza la transacción con la tarjeta del cliente.
+</li>
+</ul>
+<p>
+El flujo de procesos de la API de Pagos es el siguiente:
+</p>
+<ol>
+<li>
+El usuario realiza el proceso de pago mediante el punto de venta.
+</li>
+<li>
+El punto de venta se comunica a través del método <strong>HTTP POST</strong> con la <strong>API de Pagos</strong> de Clip.
+</li>
+<li>
+La <strong>API de Pagos</strong> de Clip responde al punto de venta con un código de transacción (Ver tabla de respuestas).
+</li>
+<li>
+La terminal Clip solicita con el método <strong>HTTP GET</strong>, la información para procesar la transacción en la terminal Clip a la <strong>API de Pagos</strong> de Clip.
+</li>
+<li>
+La terminal Clip agrega la transacción a la lista de pendientes con el estado <strong>Pendiente</strong>. La terminal está lista para realizar el proceso de pago.
+</li>
+<li>
+Al finalizar el proceso de pago en la terminal Clip, se cambia el estado de la transacción a <strong>Pagado.</strong>
+</li>
+</ol>
+<p class="pt-5">
+<img src="images/FlowDiagramAPI.png" alt="Diagrama de Flujo de la API de Pagos" />
+</p>
+
+<h2 id="payment-terminal">Proceso de Pago</h2>
+<!--Esta sección incluye el proceso de pago y el proceso de configuración de notificación postback -->
+
+<p>Después de realizar exitosamente el registro de la transacción en la terminal Clip desde el punto de venta de un tercero, el pago queda pendiente.
+    Para completar el flujo de la transacción, el comerciante realiza el cobro en la terminal Clip con la tarjeta del cliente.
+</p>
+
+<div class="h2 mt-0 pb-3">Proceso de Pago</div>
+
+<p>A continuación se describe el proceso de pago en la terminal Clip:</p>
+<ol>
+    <li>Dirígete al menú de <strong>Transacciones</strong> en la terminal Clip Pro.</li>
+    <li>Localiza la transacción a cobrar en la pestaña de <strong>Pendientes.</strong>
+        <br> La terminal muestra el mensaje <strong>Esperando la Tarjeta...</strong></li>
+    <li>Introduce la tarjeta del cliente y selecciona el monto de propina.
+        <br>La terminal procesa el pago y presenta una pantalla para firma.</li>
+    <li>Solicita al cliente que ingrese su firma en la pantalla de la terminal Clip.</li>
+    <li>Presiona <strong>Continuar</strong> para finalizar el proceso.</li>
+    <li>Opcionalmente, envía un eVoucher a un correo electrónico o número telefónico. De lo contrario, selecciona <strong>No Gracias</strong> para salir.
+    <br>La transacción ahora se encuentra en la pestaña de <strong>Pagadas</strong>.</li>
+</ol>
+
+<h2 id="postback">Notificaciones Postback</h2 id="postback">
+
+```json
+{
+    "amount": "1.00",
+    "currency": "MXN",
+    "issuer": "AMEX",
+    "last4": "1006",
+    "latitude": "19.3708538",
+    "longitude": "-99.179176",
+    "merch_inv_id": "",
+    "merchant_name": "Personal",
+    "payment_date": "1566417088",
+    "receipt_no": "Y3qw6VX",
+    "src_transaction_id": null,
+    "status": "PAID",
+    "term": "",
+    "tip": "0.00",
+    "transaction_id": "27104de9-d783-459c-8bb9-61e8ec9754c6"
+    "user_id": "[USER-EMAIL]"
+}
+```
+
+<p>El sistema de pago de Clip permite configurar notificaciones de pago por medio de llamadas de retorno (Postback). Estas notificaciones se mandan automáticamente al finalizar cada transacción, a un endpoint URL predeterminado que define el usuario.
+</p>
+<p>Prerrequisitos para las notificaciones Postback:
+</p>
+<ul>
+<li>Crear un URL del endpoint que recibe la notificación.</li>
+<li>Configurar las notificaciones de Postback en el dashboard de la <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip</a>.</li>
+</ul>
+<p>Configuración de las notificaciones de pago por postback</p>
+<p>Para configurar las notificaciones de Postback, realiza lo siguiente:</p>
+<ol>
+    <li>Ingresa a tu <a href="https://dashboard.clip.mx/users/sign_in">cuenta Clip</a>.</li>
+    <li>Dirígete a la sección <strong>Notificaciones de Pago por Postback</strong> en el menú izquierdo Herramientas Negocio.</li>
+    <li>Selecciona el botón de <strong>Configuración de notificación (postback).</strong></li>
+    <li>Introduce la URL del endpoint donde se indica.</li>
+    <li>Guarda los cambios.</li>
+</ol>
+<p>El contenido de la respuesta se envía en formato de un objeto JSON. El contenido del recurso <code>Postback</code> es el siguiente:</p>
