@@ -1,0 +1,34 @@
+<h1 id="api-depositos">API de Depósitos</h1>
+<div class="h2 mt-0 pb-3">Documentación de la API de Depósitos de Clip</div>
+<p>
+La API de Depósitos de Clip está diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
+</p>
+<div class="h2 mt-0 pb-3">¿Qué puedo hacer con la API de Depósitos de Clip?</div>
+<p>
+Los desarrolladores pueden usar la API de Depósitos para obtener reportes de los depósitos realizados desde Clip al comerciante.
+</p>
+<p>
+Las acciones disponibles con la API de Depósitos de Clip son:
+</p>
+<ul>
+<li>
+Obtener un reporte por periodo con un resumen del total de depósitos.
+</li>
+<li>
+Obtener un reporte detallado de las transacciones individuales de un reporte de periodo.
+</li>
+</ul>
+
+<div class="h2 mt-0 pb-3">Elementos de la API de Depósitos de Clip</div>
+<p>
+La API de Depósitos de Clip se comunica a través de llamadas y respuestas en formato JSON. Con las llamadas y respuestas de la API de Depósitos se puede interactuar con los siguientes elementos:
+</p>
+<ul>
+<li>
+<strong>Settlements:</strong> El recurso settlements contiene un resumen de los depósitos realizados en un periodo no mayor a 90 días. Cada reporte se identifica por un <strong>settlement_id.</strong>
+</li>
+<li>
+<strong>Settlement details:</strong> El recurso settlement details contiene un reporte detallado con los todas las transacciones del periodo relacionadas a un settlement_id.
+</li>
+</ul>
+

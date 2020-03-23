@@ -1,111 +1,19 @@
 openapi: "3.0.0"
 info:
     version: 1.0.0
-    title: POS Api
-    description: |
-        La API de Clip de Punto de Venta (POS API, en inglés, Point of Sale) permite a las aplicaciones de punto de venta de terceros abrir la aplicación Clip para procesar pagos de una persona usando el dispositivo terminal de Clip. 
-        
-        Los desarrolladores pueden usar la POS API para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la POS API está disponible para el dispositivo Clip Pro.
+    title: SDK de Clip
+    description: 
     license:
-        name: MIT
+        name: 
     contact:
-      email: devsupport@payclip.com
+      email: 
 servers:
-    - url: https://testapi-gw.payclip.com
-      description: Esta es la direccion del servicio en producción.
-    - url: https://sandbox.payclip.com
-      description: Esta es la direccion del servicio para pruebas (Sandbox).
+
 security:
-    - ApiKeyAuth: [] # use the same name as under securitySchemes
+    - ApiKeyAuth: []
 paths:
-    /paymentrequest:
-        post:
-            summary: Registrar una transacción
-            operationId: Payment Request
-            requestBody:
-                $ref: "#/components/requestBodies/RegisterTransaccion"
-            tags:
-                - payment
-            security:
-                - ApiKeyAuth: []
-            responses:
-                "200":
-                    description: Respuesta del servidor al momento de crear una transacción.
-                    content:
-                        application/json:
-                            schema:
-                              $ref: "#/components/schemas/200TransactionOk"
-                "401":
-                  $ref: "#/components/responses/Unauthorized"
+    
         
 components:
-    securitySchemes:
-        ApiKeyAuth: # arbitrary name for the security scheme
-            type: apiKey
-            in: header # can be "header", "query" or "cookie"
-            name: x-api-key # name of the header, query parameter or cookie
-            description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la POS API.
-    requestBodies:
-        RegisterTransaccion:
-            content:
-                application/json:
-                    schema:
-                        $ref: "#/components/schemas/RegisterTransaccion"
-    schemas:
-        RegisterTransaccion:
-            properties:
-                amount:
-                    description: Monto de la transacción
-                    type: number
-                assigned_user:
-                    description: Cadena de caracteres usado para identificar al usuario asignado. Formato de correo electrónico.
-                    type: string
-                    format: email
-                reference:
-                    description: Identificador único de transacción, puede ser cualquier cadena.
-                    type: string
-                    format: uuid
-                user_id:
-                    description: Identificador del usuario relacionado con la cuenta del clip.
-                    type: string
-                    format: uuid
-                message:
-                    description: Texto que aparecerá como referencia en la sección de cobros pendientes.
-                    type: string
-                    example: pago pendiente
-            type: object
-            required:
-                - amount
-                - reference
-                - message
-
-        200TransactionOk:
-            type: object
-            properties:
-                code:
-                    enum: [100, 101]
-                    type: integer
-                    description: >
-                        Código de respuesta:
-                         * `100` - Transacción exitosa
-                         * `101` - Referencia ya existe
-                description:
-                    type: string
-                    description: Descripción del código de error.
-                    example: Transaction Device Saved Success
-        Error:
-            type: object
-            required:
-                - message
-            properties:
-                message:
-                    type: string
-                    description: Mensaje descriptivo del error.
-                    example: Unauthorized
-    responses:
-        Unauthorized:
-            description: Usuario no autorizado.
-            content:
-                application/json:
-                    schema:
-                        $ref: "#/components/schemas/Error"
+    
+    

@@ -1,0 +1,50 @@
+<h1 id="docs-sdk">SDK de Clip</h1>
+<h2 id="docs-sdk-introduccion">Introducción</h2>
+<p>
+    El SDK de Clip para Android permite integrar la experiencia de pago de Clip en tu aplicación nativa de Android.
+    </p>
+    <p>
+    El SDK para Android permite que los desarrolladores puedan crear aplicaciones  personalizadas de venta y tomar los pagos utilizando los beneficios que ya ofrece la plataforma de Clip, como el cumplimiento con los estándares PCI y compatibilidad con tarjetas de débito, crédito y otras.
+    </p>
+    <p>
+    La integración con dispositivos Android extiende su uso a dispositivos móviles como celulares y tabletas, ofreciendo versatilidad en la experiencia del usuario.
+    </p>
+<h2 id="docs-sdk-caracteristicas">Características</h2>
+    <p>
+        El SDK para Android permite tomar control de los dispositivos lectores de tarjetas Clip Plus y Clip Plus 2 para integrarlos en tu aplicación personalizada de pagos.
+    </p>
+    <p>
+        Las características que ofrece la integración del lector Clip con tu aplicación son:
+    </p>
+    <ul>
+    <li>
+        Conectividad con Clip Plus y Clip Plus 2
+    </li>
+    <li>
+        Flujos de inicio y cierre de sesión
+    </li>
+    <li>
+        Métodos de pago por medio de banda magnética, tarjetas con chip y contactless*
+    </li>
+    <li>
+        Propinas y pagos diferidos en mensualidades 
+    </li>
+    <li>
+        Historial de transacciones y reembolsos para pagos en el mismo día
+    </li>
+    <li>
+        Personalización del número de referencia del pago
+    </li>
+    </ul>
+<h2 id="docs-sdk-como-funciona">Cómo funciona</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </p>
+<h2 id="docs-sdk-android">Integración con Android</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </p>
+<h2 id="docs-sdk-resolucion-problemas">Resolución de problemas</h2>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    </p>

@@ -1,0 +1,67 @@
+<h1 id="api-puntodeventa">API de Punto de Venta</h1>
+<div class="h2 mt-0 pb-3">Documentación de la API de Punto de Venta de Clip</div>
+<h2 id="payment-flow">Flujo de procesos de la API de Pagos</h2>
+<p>
+Esta sección describe el flujo de interacciones entre el punto de venta, la API de Clip y la terminal Clip Pro.
+</p>
+<p>
+Definiciones:</p>
+<ul>
+<li>
+Usuario: Persona del establecimiento que realiza la venta.
+</li>
+<li>
+Punto de venta: Interfaz de pago perteneciente al establecimiento.
+</li>
+<li>
+Terminal Clip: Dispositivo Clip Pro con el cual se realiza la transacción con la tarjeta del cliente.
+</li>
+</ul>
+<p>
+El flujo de procesos de la API de Pagos es el siguiente:
+</p>
+<ol>
+<li>
+El usuario realiza el proceso de pago mediante el punto de venta.
+</li>
+<li>
+El punto de venta se comunica a través del método <strong>HTTP POST</strong> con la <strong>API de Pagos</strong> de Clip.
+</li>
+<li>
+La <strong>API de Pagos</strong> de Clip responde al punto de venta con un código de transacción (Ver tabla de respuestas).
+</li>
+<li>
+La terminal Clip solicita con el método <strong>HTTP GET</strong>, la información para procesar la transacción en la terminal Clip a la <strong>API de Pagos</strong> de Clip.
+</li>
+<li>
+La terminal Clip agrega la transacción a la lista de pendientes con el estado <strong>Pendiente</strong>. La terminal está lista para realizar el proceso de pago.
+</li>
+<li>
+Al finalizar el proceso de pago en la terminal Clip, se cambia el estado de la transacción a <strong>Pagado.</strong>
+</li>
+</ol>
+<p class="pt-5">
+<img src="images/FlowDiagramAPI.png" alt="Diagrama de Flujo de la API de Pagos" />
+</p>
+
+<h2 id="payment-terminal">Proceso de Pago</h2>
+<!--Esta sección incluye el proceso de pago y el proceso de configuración de notificación postback -->
+
+<p>Después de realizar exitosamente el registro de la transacción en la terminal Clip desde el punto de venta de un tercero, el pago queda pendiente.
+    Para completar el flujo de la transacción, el comerciante realiza el cobro en la terminal Clip con la tarjeta del cliente.
+</p>
+
+<div class="h2 mt-0 pb-3">Proceso de Pago</div>
+
+<p>A continuación se describe el proceso de pago en la terminal Clip:</p>
+<ol>
+    <li>Dirígete al menú de <strong>Transacciones</strong> en la terminal Clip Pro.</li>
+    <li>Localiza la transacción a cobrar en la pestaña de <strong>Pendientes.</strong>
+        <br> La terminal muestra el mensaje <strong>Esperando la Tarjeta...</strong></li>
+    <li>Introduce la tarjeta del cliente y selecciona el monto de propina.
+        <br>La terminal procesa el pago y presenta una pantalla para firma.</li>
+    <li>Solicita al cliente que ingrese su firma en la pantalla de la terminal Clip.</li>
+    <li>Presiona <strong>Continuar</strong> para finalizar el proceso.</li>
+    <li>Opcionalmente, envía un eVoucher a un correo electrónico o número telefónico. De lo contrario, selecciona <strong>No Gracias</strong> para salir.
+    <br>La transacción ahora se encuentra en la pestaña de <strong>Pagadas</strong>.</li>
+</ol>

@@ -1,0 +1,45 @@
+<div class="h2 mt-0 pb-3">Autenticación</div>
+<p>
+Todas las llamadas de la API de Clip requieren autenticación. Es necesario obtener un token de autenticación para poder utilizar de forma segura la API y poder integrar tu solución personalizada.
+</p>
+<h2 class="icon key gray mb-3" id="apikey">Api Key</h2>
+
+<div class="h2 mt-0 pb-3">¿Cómo obtener mi token de autenticación?</div>
+<p>Para obtener un token de autenticación sigue estos pasos:</p>
+<ol>
+    <li>Enviar un correo a <a href="mailto:developers@clip.mx">developers@clip.mx</a>.
+    <br>Un agente de Clip iniciará el proceso de creación del token y lo proporcionará al solicitante.</li>
+    <li>Utilizar el token generado conforme a los requerimientos especificados en la documentación.</li>
+</ol>
+<div class="h2 mt-0 pb-3">¿Cómo utilizar mi token de autenticación?</div>
+<p>El token de autenticación se envía como un parámetro de encabezado o “Header” de la llamada a la API.</p>
+
+```http
+GET https://api-gw.payclip.com/settlements/ HTTP/1.1
+Accept: application/json
+Content-Type: application/json; charset=UTF-8
+Host: api-gw.payclip.com
+x-api-key: [x-api-key token]
+```
+
+El siguiente bloque de código muestra un ejemplo de una llamada CURL a la API de Depósitos de Clip. El nombre del parámetro es: <span class="tags gray">x-api-key</span>, y se ubica en los parámetros de: <span class="tags purple">header</span>
+<table>
+<tbody>
+<tr>
+<td>
+<strong>Tipo de esquema de seguridad:</strong>
+</td>
+<td>
+apiKey
+</td>
+</tr>
+<tr>
+<td>
+<strong>Nombre del parámetro en header:</strong>
+</td>
+<td>
+x-api-key
+</td>
+</tr>
+<tbody>
+</table>
