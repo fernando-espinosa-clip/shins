@@ -1,9 +1,9 @@
 <h1 id="api-depositos">API de Depósitos</h1>
-<div class="h2 mt-0 pb-3">Documentación de la API de Depósitos de Clip</div>
+<h2 id="api-depositos-intro">Introducción</h2>
 <p>
 La API de Depósitos de Clip está diseñada para obtener la información referente a los depósitos realizados en un rango de hasta 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener el detalle de sus transacciones.
 </p>
-<div class="h2 mt-0 pb-3">¿Qué puedo hacer con la API de Depósitos de Clip?</div>
+<h2 id="api-depositos-caracteristicas">Características</h2>
 <p>
 Los desarrolladores pueden usar la API de Depósitos para obtener reportes de los depósitos realizados desde Clip al comerciante.
 </p>
@@ -19,7 +19,8 @@ Obtener un reporte detallado de las transacciones individuales de un reporte de 
 </li>
 </ul>
 
-<div class="h2 mt-0 pb-3">Elementos de la API de Depósitos de Clip</div>
+<h2 id="api-depositos-como-funciona">Cómo funciona</h2>
+
 <p>
 La API de Depósitos de Clip se comunica a través de llamadas y respuestas en formato JSON. Con las llamadas y respuestas de la API de Depósitos se puede interactuar con los siguientes elementos:
 </p>

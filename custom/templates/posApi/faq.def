@@ -32,9 +32,13 @@
   a: 'Las tarifas por transacciones iniciadas con la API de Clip Punto de Venta son idénticas a las <a href="https://clip.mx/costos-y-comisiones/">tarifas por transacciones</a> iniciadas directamente desde la aplicación Clip.'
 },
 {
-   q: '¿Hay un sandbox disponible para probar transacciones de la API de Clip Punto de Venta?',
-   a: 'Por el momento no. Estamos en proceso de desarrollar un ambiente de pruebas para la API de Clip Punto de Venta, sin embargo se pueden procesar pagos pequeños con tarjeta (tan bajos como $1.00), y luego emitir reembolsos desde la aplicación Clip.'
- }
+    q: '¿Hay un sandbox disponible para probar transacciones de la API de Clip Punto de Venta?',
+    a: 'Por el momento no. Estamos en proceso de desarrollar un ambiente de pruebas para la API de Clip Punto de Venta, sin embargo se pueden procesar pagos pequeños con tarjeta (tan bajos como $1.00), y luego emitir reembolsos desde la aplicación Clip.'
+},
+{
+    q: '¿Cuáles son los límites para transacciones al implementar el SDK?',
+    a: 'Una transacción válida para Clip, es de mínimo 0.01 MXN y máximo 999,999.99 MXN. Registrar una transacción fuera de estos límites regresa alguno de los errores de validación 90001 o 90002.'
+}
 ]; }}
 {{##def.questions:props:
 <div class=" accordion">

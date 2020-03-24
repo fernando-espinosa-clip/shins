@@ -38,11 +38,34 @@
     </ul>
 <h2 id="docs-sdk-como-funciona">Cómo funciona</h2>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+    El SDK de Clip es una librería que extiende las capacidades de tu aplicación de punto de venta.
     </p>
+    <p>
+    Es necesario contar con una aplicación móvil de Android que cumpla con un mínimo de requisitos y tener una cuenta registrada en Clip.
+    </p>
+    <p>
+    Las funciones que permite desarrollar la librería son:
+    </p>
+    <ul>
+        <li>
+            Crear un objeto de pago
+        </li>
+        <li>
+            Obtener el historial de transacciones del mismo día
+        </li>
+        <li>
+            Cerrar la sesión de Clip desde tu aplicación
+        </li>
+    </ul>
 <h2 id="docs-sdk-android">Integración con Android</h2>
     <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Para integrar la librería de Clip, sólo es necesario importarla en tu proyecto de Android como parte de las dependencias.
+    </p>
+    <p>
+        El SDK de Clip te ofrece un proyecto demo para integrar el SDK a tu aplicación y poder analizar ejemplos de código para integrar la solución personalizada a tu propia aplicación móvil de Android.
+    </p>
+    <p>
+        El SDK de Clip para Android soporta la integración con aplicaciones desarrolladas en Kotlin y Java.
     </p>
 <h2 id="docs-sdk-resolucion-problemas">Resolución de problemas</h2>
     <p>
