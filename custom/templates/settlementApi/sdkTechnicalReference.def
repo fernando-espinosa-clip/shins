@@ -344,3 +344,162 @@ ClipApi.INSTANCE.logout(new LogoutListener() {
         <code>20003 - INVALID_ACCESS_TOKEN</code>: Access token expired. Optional: Renew the access token.
     </li>
 </ul>
+
+<p>
+    Connection
+</p>
+<ul>
+    <li>
+        <code>30001 - BLUETOOTH_UNAVAILABLE</code>: Device’s bluetooth is disabled.
+    </li>
+    <li>
+        <code>30002 - BLUETOOTH_MISSING_PERMISSIONS</code>: Missing bluetooth permissions in Android Manifest.
+    </li>
+    <li>
+        <code>30003 - DEVICE_CONNECTION_LOST</code>: Lost Bluetooth connection to the Clip Plus reader. 
+    </li>
+    <li>
+        <code>30004 - DEVICE_FAILED_TO_CONNECT</code>: Device failed to connect to the Clip Plus reader.
+    </li>
+    <li>
+        <code>30005 - NO_DEVICES_FOUND</code>: No devices found during bluetooth discovery.
+    </li>
+    <li>
+        <code>30006 - NO_READER_DETECTED</code>: There’s no Clip Plus reader connected to the device.
+    </li>
+</ul>
+
+<p>
+    Limit Check
+</p>
+<ul>
+    <li>
+        <code>40001 - LIMIT_EXCEEDED</code>: Merchant’s transaction limit exceeded.
+    </li>
+    <li>
+        <code>40002 - LIMIT_CHECK_REQUEST_FAILED</code>: Limit-check request failed.
+    </li>
+    <li>
+        <code>40003 - NO_LOCATION </code>: The device provided no location.
+    </li>
+    <li>
+        <code>40004 - ZERO_AMOUNT</code>: 0 MXN amount sent to limit-check service.
+    </li>
+    <li>
+        <code>40005 - LIMIT_CHECK_TIMEOUT</code>: Limit-check request timed out.
+    </li>
+</ul>
+
+<p>
+    Payment
+</p>
+<ul>
+    <li>
+        <code>50001 - PAYMENT_DECLINED</code>: The host declined the transaction.
+    </li>
+    <li>
+        <code>50002 - PAYMENT_CANCELED</code>: The payment process was canceled.
+    </li>
+    <li>
+        <code>50003 - APPROVED_PAYMENT_CANCELED</code>: Payment process canceled in the signature screen after approving the transaction. 
+    </li>
+    <li>
+        <code>50004 - ZERO_AMOUNT</code>: 0 MXN amount sent to payment service.
+    </li>
+    <li>
+        <code>50005 - PAYMENT_TIMEOUT</code>: Transaction timed out.
+    </li>
+    <li>
+        <code>50006 - PAYMENT_ERROR_OTHER</code>: Unknown error happened during the transaction.
+    </li>
+    <li>
+        <code>50007 - PAYMENT_REQUEST_FAILED</code>: Invocation to payment service failed.
+    </li>
+</ul>
+
+<p>
+    Canceled
+</p>
+<ul>
+    <li>
+        <code>60001 - CANCELED_BY_READER</code>: Reader canceled the transaction due to timeout. The reader waits 60 seconds for a card before canceling the transaction. 
+    </li>
+    <li>
+        <code>60002 - CANCELED_BY_USER</code>: The user canceled the transaction.
+    </li>
+    <li>
+        <code>60003 - READER_INFO_ERROR</code>: No information obtained while reading the card. 
+    </li>
+</ul>
+
+<p>
+    Card
+</p>
+<ul>
+    <li>
+        <code>70001 - MISSING_TRACK_INFORMATION</code>: Error while reading the magnetic stripe.
+    </li>
+    <li>
+        <code>70002 - NOT_CHIP_CARD</code>: The inserted card is not a valid chip card.
+    </li>
+    <li>
+        <code>70003 - PROCESS_AS_CHIP</code>: A swipe transaction started using a chip card.
+    </li>
+    <li>
+        <code>70004 - INTERRUPTED</code>: Card reading was interrupted.
+    </li>
+    <li>
+        <code>70005 - CARD_TIMEOUT</code>: No response received from the card reader.
+    </li>
+    <li>
+        <code>70006 - CARD_INFO_ERROR</code>: Error while extracting card information.
+    </li>
+</ul>
+
+<p>
+    Location
+</p>
+<ul>
+    <li>
+        <code>80001 - LOCATION_NOT_AUTHORIZED</code>: Location permissions not provided.
+    </li>
+    <li>
+        <code>80002 - NO_LOCATION</code>: No location information was retrieved.
+    </li>
+    <li>
+        <code>80003 - PERMISSIONS_DECLINED</code>: The user declined to provide location permissions.
+    </li>
+    <li>
+        <code>80004 - LOCATION_OTHER</code>: Unknown error while processing the location.
+    </li>
+</ul>
+
+<p>
+    Validation
+</p>
+<ul>
+    <li>
+        <code>90001 - MIN_AMOUNT</code>: 0 MXN amount sent to SDK.
+    </li>
+    <li>
+        <code>90002 - MAX_AMOUNT</code>: The maximum amount per transaction was exceeded.
+    </li>
+    <li>
+        <code>90003 - NO_INTERNET</code>: No internet connection detected.
+    </li>
+    <li>
+        <code>90004 - NO_GPS_SIGNAL</code>: The location provider is turned off.
+    </li>
+</ul>
+
+<p>
+    Other
+</p>
+<ul>
+    <li>
+        <code>11001 - TERMINAL_ERROR</code>: An error happened with the terminal during the transaction.
+    </li>
+    <li>
+        <code>11002 - INITIALIZATION_ERROR</code>: Terminal initialization failed.
+    </li>
+</ul>
