@@ -17,13 +17,13 @@ tags:
 - name: API de Depósitos
   description: |
     La API de Depósitos esta diseñada para obtener la información referente a los depósitos realizados en los últimos 90 días. De la misma manera y con la información de los depósitos consultados se puede obtener un reporte detallado de sus transacciones.
-- name: API de Pagos
+- name: API de Punto de Venta
   description: |
     El recurso **paymentrequest** permite registrar una transacción en el dispositivo Clip desde una aplicación externa de punto de venta.  
     
     La API de Clip de Punto de Venta (POS API, en inglés, Point of Sale) permite a las aplicaciones de punto de venta de terceros abrir la aplicación Clip para procesar pagos de una persona usando el dispositivo terminal de Clip.  
     
-    Los desarrolladores pueden usar la POS API para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la POS API está disponible para el dispositivo Clip Pro.
+    Los desarrolladores pueden usar la API de Punto de Venta para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la API de Punto de Venta está disponible para el dispositivo Clip Pro.
 security:
     - ApiKeyAuth: [] # use the same name as under securitySchemes
 paths:
@@ -156,7 +156,7 @@ paths:
   /paymentrequest:
     post:
       tags:
-        - API de Pagos
+        - API de Punto de Venta
       summary: Registrar una transacción.
       operationId: Payment Request
       requestBody:
@@ -182,7 +182,7 @@ components:
             type: apiKey
             in: header # can be "header", "query" or "cookie"
             name: x-api-key # name of the header, query parameter or cookie
-            description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la POS API.
+            description: Llave provista por Clip necesaria para poder autenticarse y con ello realizar llamadas a la API de Punto de Venta.
   schemas:
     settlements:
       type: object

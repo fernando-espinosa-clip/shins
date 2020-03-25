@@ -38,7 +38,7 @@
     "status": "PAID",
     "term": "",
     "tip": "0.00",
-    "transaction_id": "27104de9-d783-459c-8bb9-61e8ec9754c6"
+    "transaction_id": "27104de9-d783-459c-8bb9-61e8ec9754c6",
     "user_id": "[USER-EMAIL]"
 }
 ```

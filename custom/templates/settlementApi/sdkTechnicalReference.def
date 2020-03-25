@@ -1,0 +1,346 @@
+<h1 id="sdk-intro">Introducción al SDK</h1>
+<p>
+    Desarrolla una aplicación de punto de venta para dispositivos móviles Android utilizando el SDK de Clip y un dispositivo lector de Clip Plus.
+</p>
+<h2 id="sdk-prerrequisitos">Prerrequisitos</h2>
+<p>
+    Para poder integrar el SDK de Clip a tu aplicación de Android, debes cumplir los siguientes prerrequisitos:
+</p>
+<ul>
+<li>
+Tener una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta de Clip</a> activa.
+</li>
+<li>
+    Tener una aplicación Android con versión mínima minSdkVersion 16 y versión target minTargetVersion de 29.
+</li>
+<li>
+    Agregar la librería del SDK como dependencia en el proyecto de Android.
+</li>
+<li>
+    Configurar los permisos del dispositivo requeridos por el SDK.
+</li>
+</ul>
+
+<div class="h2 mt-0 pb-3" id="sdk-ambientes">Ambientes de desarrollo</div>
+<p>
+    <strong>NOTA:</strong> Por el momento no existe un ambiente “sandbox” para pruebas y sólo está disponible el ambiente de producción.
+</p>
+
+<div class="h2 mt-0 pb-3" id="sdk-proyecto-demo">Trabajando con el proyecto demo</div>
+<p>
+    Clip SDK te ofrece un proyecto demo para integrar el SDK a tu aplicación. Este proyecto se encuentra en el archivo application.kt dentro de la carpeta demo del repositorio y contiene ejemplos de uso de las funciones de la librería.
+</p>
+<p>
+    Las funciones que permite desarrollar la librería son:
+</p>
+<ul>
+<li>
+    Crear un objeto de pago
+</li>
+<li>
+    Obtener el historial de transacciones del mismo día
+</li>
+<li>
+    Cerrar la sesión de Clip desde tu aplicación
+</li>
+</ul>
+
+<h1 id="sdk-referencia-tecnica">SDK de Clip</h1>
+<p>
+    Las siguientes secciones describen cómo trabajar con la librería del SDK de Clip. 
+</p>
+
+<h2 id="sdk-permisos">Permisos del dispositivo</h2>
+
+```java
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+```
+<p>
+    Para poder integrar el SDK de Clip en tu aplicación de Android, es necesario incluir los siguientes permisos para el dispositivo que utilizará la aplicación.
+</p>
+<p>
+    Configura tu archivo AndroidManifest.xml con los siguientes permisos:
+</p>
+
+<p>
+    La siguiente lista incluye una descripción para cada uno de los permisos del dispositivo:
+</p>
+<ul>
+<li>
+    <code>INTERNET</code>: Permite que la aplicación se conecte a internet.
+</li>
+<li>
+    <code>ACCESS_NETWORK_STATE</code>: Permite verificar el estado de conectividad de red del dispositivo.
+</li>
+<li>
+    <code>ACCESS_COARSE_LOCATION</code>, <code>ACCESS_FINE_LOCATION</code>: Para obtener la ubicación del lugar en que se realiza la transacción.
+</li>
+<li>
+    <code>BLUETOOTH</code>, <code>BLUETOOTH_ADMIN</code>: Para descubrir y aparear nuevos dispositivos desde la aplicación Android y conectarse con la terminal de Clip.
+</li>
+</ul>
+
+
+<h2 id="sdk-dependencias">Agregando las Dependencias</h2>
+<p>
+    Es necesario agregar el SDK de Clip como dependencia en el archivo build.gradle de tu proyecto de Android.
+</p>
+<p>
+    La librería está disponible a través de una descarga en JitPack. Los siguientes pasos muestran cómo implementarla:
+</p>
+<p>
+    Agrega el repositorio de JitPack en tu archivo build.gradle del módulo principal.
+</p>
+
+```java
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+<div class="h2 mt-0 pb-3"></div>
+<p>
+    Agrega la dependencia a la librería en las dependencias del módulo de aplicación.
+</p>
+
+```java
+dependencies {
+    implementation 'com.github.clipmx.payclip-android-sdk:app:0.3.6'
+}
+```
+
+<h2 id="sdk-inicializar">Inicializando la aplicación</h2>
+<p>
+    Inicializa el SDK de Clip desde tu clase <code>Application</code>.
+</p>
+
+```kotlin
+EJEMPLO EN KOTLIN
+
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        ClipApi.initTerminal(this)
+    }
+ }
+```
+
+```java
+EJEMPLO EN JAVA
+
+public class MyApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ClipApi.INSTANCE.initTerminal(getApplicationContext());
+    }
+ }
+```
+
+<h2 id="sdk-objeto-pago">Crear un objeto de pago</h2>
+<p>
+    Para integrar la función de pago con Clip, se requiere:
+</p>
+<ul>
+    <li>
+        Crear un objeto de pago en la aplicación
+    </li>
+    <li>
+        Agregar un listener para el botón o elemento gráfico de pago en tu aplicación
+    </li>
+</ul>
+
+<p>
+    Para crear un objeto de pago, implementa  la siguiente función: 
+</p>
+
+```kotlin
+EJEMPLO EN KOTLIN
+
+private fun createPayment(amount: BigDecimal): ClipPayment? {
+    return try {
+        ClipPayment.Builder()
+            .amount(amount)
+            .enabledTips(switchTips.isChecked)
+            .roundTips(switchTips.isChecked && roundTips)
+            .customTransactionId(invoiceEditText.text?.toString())
+            .build()
+    } catch (e: InvalidParameterException) {
+        Snackbar.make(btnPayment, "${e.message}", Snackbar.LENGTH_LONG).show()
+        null
+    }
+}
+```
+
+```java
+EJEMPLO EN JAVA
+
+private ClipPayment createPayment(BigDecimal amount) {
+    try {
+        return new ClipPayment.Builder()
+                .amount(amount)
+                .enabledTips(switchTips.isChecked())
+                .roundTips(switchTips.isChecked() && roundTips)
+                .customTransactionId(invoiceEditText.getEditableText().toString())
+                .build();
+    } catch (InvalidParameterException e){
+        if(e.getMessage() != null) {
+            Snackbar.make(btnPayment, e.getMessage(), Snackbar.LENGTH_LONG).show();
+        }
+        return null;
+    }
+ }  
+```
+<div class="h2 mt-0 pb-3"></div>
+<p>
+    En el listener del botón de pago de tu aplicación, agrega la siguiente función:
+</p>
+
+```kotlin
+EJEMPLO EN KOTLIN
+
+btnPayment.setOnClickListener {
+    createPayment(amount)?.let { payment ->
+            ClipApi.launchPaymentActivity(this, payment)
+        }
+ } 
+```
+
+```java
+EJEMPLO EN JAVA
+
+btnPayment.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        ClipPayment clipPayment = createPayment(amount);
+        ClipApi.INSTANCE.launchPaymentActivity(this, clipPayment);
+    }
+ }); 
+```
+
+<h2 id="sdk-historial-transacciones">Obtener el historial de transacciones</h2>
+<p>
+    El SDK de Clip permite obtener el historial de transacciones que se han realizado dentro del mismo día. No es posible obtener historial de transacciones de días anteriores.
+</p>
+<p>
+    Para obtener el historial de transacciones, es necesario llamar a la siguiente función: 
+</p>
+
+```kotlin
+EJEMPLO EN KOTLIN
+
+ClipApi.showTransactionHistoryActivity(this)
+```
+
+```java
+EJEMPLO EN JAVA
+
+ClipApi.INSTANCE.showTransactionHistoryActivity(MainActivity.this);
+```
+<div class="h2 mt-0 pb-3"></div>
+<p>
+    La función de obtener el historial puede regresar transacciones con los siguientes posibles estados para cada transacción:
+</p>
+<ul>
+    <li>
+        <strong>Paid</strong>: Se finalizó un proceso de pago.
+    </li>
+    <li>
+        <strong>Canceled</strong>: 
+        Se realizó una devolución exitosa para la transacción.
+    </li>
+</ul>
+
+<h2 id="sdk-cerrar-sesion-Clip">Cerrar la sesión de Clip</h2>
+<p>
+    Desde tu aplicación, puedes solicitar cerrar la sesión de Clip en tu aplicación. 
+</p>
+<p>
+    Para cerrar la sesión de Clip desde la aplicación, implementa la siguiente función: 
+</p>
+
+```kotlin
+EJEMPLO EN KOTLIN
+
+ClipApi.logout(object : LogoutListener {
+    override fun onLogoutSuccess(statusCode: Int) {
+        // Logout was successful
+    }
+ 
+    override fun onLogoutFailed(statusCode: Int) {
+        // Logout failed
+    }
+ }) 
+```
+
+```java
+EJEMPLO EN JAVA
+
+ClipApi.INSTANCE.logout(new LogoutListener() {
+    @Override
+    public void onLogoutSuccess(int statusCode) {
+        //Logout was successful.
+    }
+
+    @Override
+    public void onLogoutFailed(int statusCode) {
+        //Logout failed.
+    }
+});
+```
+
+<h2 id="sdk-codigos-resultado">Códigos de resultado</h2>
+<p>
+    La librería de Clip y sus funciones regresan códigos estándar de Android para demostrar estados de éxito o error cuando se invocan las funciones. Además, en cada caso de error durante la ejecución, se presenta un código personalizado acompañado de la descripción del error.
+</p>
+<div class="h2 mt-0 pb-3" id="sdk-codigos-estandar">Códigos estándar</div>
+<p>
+    Los códigos estándar están definidos por el lenguaje de programación.
+</p>
+<p>
+    Códigos estándar:
+</p>
+<ul>
+    <li>
+        <strong>-1</strong>: La función se realizó correctamente.
+    </li>
+    <li>
+        <strong>0</strong>: Error, algo ocurrió mal.
+    </li>
+</ul>
+
+<div class="h2 mt-0 pb-3" id="sdk-codigos-especiales">Códigos especiales</div>
+<p>
+    La librería de Clip regresa algunos códigos especiales para describir a detalle el motivo del error. 
+    Los códigos  de error especiales son 5 caracteres numéricos y están divididos por categorías clasificadas por su dígito inicial. Cada error se acompaña de una cadena de texto con una breve descripción del error. 
+</p>
+<p>
+    Service Request
+</p>
+<ul>
+    <li>
+        <code>10001 - CONNECTION_ERROR</code>: Network connection error.
+    </li>
+</ul>
+
+<p>
+    Session
+</p>
+<ul>
+    <li>
+        <code>20001 - ALREADY_SIGNED_OUT</code>: User has already closed their session.
+    </li>
+    <li>
+        <code>20002 - BAD_CREDENTIALS</code>: Incorrect email and password combination.
+    </li>
+    <li>
+        <code>20003 - INVALID_ACCESS_TOKEN</code>: Access token expired. Optional: Renew the access token.
+    </li>
+</ul>

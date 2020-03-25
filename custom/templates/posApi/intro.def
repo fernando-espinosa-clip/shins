@@ -1,10 +1,13 @@
 <h1 id="primeros-pasos">APIs y SDK de Clip</h1>
 <h2 id="getting-started">Primeros Pasos</h2>
 <p>
-Los desarrolladores pueden usar la API para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
+Los desarrolladores pueden usar las herramientas de APIs y SDK de Clip para crear soluciones personalizadas para su negocio. 
 </p>
 <p>
-La API de Clip sigue los principios REST para el desarrollo de APIs y se comunica a través de llamadas y respuestas en formato JSON.
+Estas herramientas permiten integrar la terminal de Clip a una aplicación de punto de venta, obtener información detallada de los depósitos de las transacciones y .
+</p>
+<p>
+Las APIs de Clip siguen los principios REST para el desarrollo de APIs y se comunican a través de llamadas y respuestas en formato JSON.
 </p>
 
 <div class="h2 mt-0 pb-3">¿Qué necesito antes de empezar?</div>

@@ -1,5 +1,4 @@
-<h1 id="intro">Introducción</h1>
-<h2 id="getting-started">Primeros Pasos</h2>
+<h1 id="api-intro">Introducción a las APIs</h1>
 <p>
 Los desarrolladores pueden usar la API para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
 </p>
@@ -7,7 +6,7 @@ Los desarrolladores pueden usar la API para crear soluciones personalizadas de p
 La API de Clip sigue los principios REST para el desarrollo de APIs y se comunica a través de llamadas y respuestas en formato JSON.
 </p>
 
-<div class="h2 mt-0 pb-3">¿Qué necesito antes de empezar?</div>
+<h2 id="api-prerrequisitos">Prerrequisitos</h2>
 <p>
 Para poder desarrollar con la API de Clip se requiere:
 </p>
@@ -33,17 +32,17 @@ La API de Clip está habilitada para comunicarse utilizando los siguientes méto
 </li>
 </ul>
 
-<h2 id="responses">Respuestas</h2>
+<h2 id="api-respuestas">Respuestas</h2>
 <p>
 La API de Clip está desarrollada para regresar códigos de respuesta HTTP estándar. Todas las respuestas con código 200 incluyen un objeto JSON con la información solicitada (llamadas GET) o con un mensaje descriptivo de confirmación (llamadas POST).
 </p>
 
-<h2 id="errors">Errores</h2>
+<h2 id="api-errores">Errores</h2>
 <p>
-La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
+La API de Clip regresa códigos de error HTTP estándar. Algunos códigos de error regresan un objeto JSON con la descripción del error.
 </p>
 
-<h2 id="testing">Pruebas</h2>
+<h2 id="api-pruebas">Pruebas</h2>
 <p>
 Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como <a href="https://www.getpostman.com/downloads/">Postman</a>. Para poder realizar llamadas de prueba es necesario obtener un token de <a href="#apikey">autenticación</a>.
 </p>

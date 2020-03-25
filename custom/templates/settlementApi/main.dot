@@ -116,6 +116,7 @@ Estos son los diferentes ambientes definidos en la API:
 
 {{?}}
 
+{{#def.sdkTechnicalReference}}
 {{#def.faq}}
 
 {{#def.footer}}
