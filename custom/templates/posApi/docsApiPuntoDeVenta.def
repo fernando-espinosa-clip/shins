@@ -1,6 +1,16 @@
-<h1 id="api-puntodeventa">API de Punto de Venta</h1>
-<div class="h2 mt-0 pb-3">Documentación de la API de Punto de Venta de Clip</div>
-<h2 id="payment-flow">Flujo de procesos de la API de Pagos</h2>
+<h1 id="api-pos">API de Punto de Venta</h1>
+<h2 id="api-pos-intro">Introducción</h2>
+<p>
+    La API de Punto de Venta de Clip permite a las aplicaciones de punto de venta de terceros abrir la aplicación Clip para procesar pagos de una persona usando el dispositivo terminal de Clip.
+</p>
+<h2 id="api-pos-caracteristicas">Características</h2>
+<p>
+    Los desarrolladores pueden usar la API de Punto de Venta para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la API de Punto de Venta está disponible para el dispositivo Clip Pro.
+</p>
+<p>
+    Los desarrolladores pueden usar la API de Punto de Venta para crear soluciones personalizadas de punto de venta o cualquier otra aplicación que requiera pagos, sin preocuparse por el cumplimiento de las normativas de la Industria de Pagos con Tarjeta PCI. Por el momento la API de Punto de Venta está disponible para el dispositivo Clip Pro.
+</p>
+<h2 id="api-pos-como-funciona">Cómo funciona</h2>
 <p>
 Esta sección describe el flujo de interacciones entre el punto de venta, la API de Clip y la terminal Clip Pro.
 </p>
@@ -44,15 +54,12 @@ Al finalizar el proceso de pago en la terminal Clip, se cambia el estado de la t
 <img src="images/FlowDiagramAPI.png" alt="Diagrama de Flujo de la API de Pagos" />
 </p>
 
-<h2 id="payment-terminal">Proceso de Pago</h2>
-<!--Esta sección incluye el proceso de pago y el proceso de configuración de notificación postback -->
+<div class="h2 mt-0 pb-3">Proceso de Pago</div>
+<!--Esta sección incluye el proceso de pago -->
 
 <p>Después de realizar exitosamente el registro de la transacción en la terminal Clip desde el punto de venta de un tercero, el pago queda pendiente.
     Para completar el flujo de la transacción, el comerciante realiza el cobro en la terminal Clip con la tarjeta del cliente.
 </p>
-
-<div class="h2 mt-0 pb-3">Proceso de Pago</div>
-
 <p>A continuación se describe el proceso de pago en la terminal Clip:</p>
 <ol>
     <li>Dirígete al menú de <strong>Transacciones</strong> en la terminal Clip Pro.</li>

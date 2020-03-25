@@ -1,5 +1,6 @@
 <h1 id="docs-sdk">SDK de Clip</h1>
-<h2 id="docs-sdk-introduccion">Introducción</h2>
+
+<h2 id="docs-sdk-intro">Introducción</h2>
 <p>
     El SDK de Clip para Android permite integrar la experiencia de pago de Clip en tu aplicación nativa de Android.
     </p>
@@ -8,7 +9,8 @@
     </p>
     <p>
     La integración con dispositivos Android extiende su uso a dispositivos móviles como celulares y tabletas, ofreciendo versatilidad en la experiencia del usuario.
-    </p>
+</p>
+
 <h2 id="docs-sdk-caracteristicas">Características</h2>
     <p>
         El SDK para Android permite tomar control de los dispositivos lectores de tarjetas Clip Plus y Clip Plus 2 para integrarlos en tu aplicación personalizada de pagos.
@@ -36,6 +38,7 @@
         Personalización del número de referencia del pago
     </li>
     </ul>
+
 <h2 id="docs-sdk-como-funciona">Cómo funciona</h2>
     <p>
     El SDK de Clip es una librería que extiende las capacidades de tu aplicación de punto de venta.
@@ -67,7 +70,9 @@
     <p>
         El SDK de Clip para Android soporta la integración con aplicaciones desarrolladas en Kotlin y Java.
     </p>
-<h2 id="docs-sdk-resolucion-problemas">Resolución de problemas</h2>
+
+
+    <h2 id="docs-sdk-resolucion-problemas">Resolución de problemas</h2>
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
     </p>
