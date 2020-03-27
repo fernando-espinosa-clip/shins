@@ -38,6 +38,18 @@
 {
     q: '¿Cuáles son los límites para transacciones al implementar el SDK?',
     a: 'Una transacción válida para Clip, es de mínimo 0.01 MXN y máximo 999,999.99 MXN. Registrar una transacción fuera de estos límites regresa alguno de los errores de validación 90001 o 90002.'
+},
+{
+    q: '¿Cómo puedo configurar los meses sin intereses con el SDK?',
+    a: 'Los meses sin intereses se configuran desde el dashboard de Clip. Cuando esta opción se encuentra activa, la opción aparece automáticamente en el flujo de pago implementado en tu aplicación móvil de Android.'
+},
+{
+    q: '¿Cómo puedo desactivar las propinas en el SDK?',
+    a: 'Dentro de la librería del SDK, el objeto <code>ClipPayment</code> contiene un parámetro llamado <code>enableTips</code>, el cual permite activar o desactivar las propinas.'
+},
+{
+    q: '¿Es posible hacer devoluciones desde el SDK?',
+    a: 'Sí, pero sólo para transacciones realizadas el mismo día. Para transacciones de fechas anteriores es necesario contactar a soporte Clip.'
 }
 ]; }}
 {{##def.questions:props:

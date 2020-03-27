@@ -28,7 +28,7 @@ Tener una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta de 
 
 <div class="h2 mt-0 pb-3" id="sdk-proyecto-demo">Trabajando con el proyecto demo</div>
 <p>
-    Clip SDK te ofrece un proyecto demo para integrar el SDK a tu aplicación. Este proyecto se encuentra en el archivo application.kt dentro de la carpeta demo del repositorio y contiene ejemplos de uso de las funciones de la librería.
+    Clip SDK te ofrece un proyecto demo para integrar el SDK a tu aplicación. Este proyecto se encuentra en el archivo <code>application.kt</code> dentro de la carpeta demo del repositorio y contiene ejemplos de uso de las funciones de la librería.
 </p>
 <p>
     Las funciones que permite desarrollar la librería son:
@@ -64,7 +64,7 @@ Tener una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta de 
     Para poder integrar el SDK de Clip en tu aplicación de Android, es necesario incluir los siguientes permisos para el dispositivo que utilizará la aplicación.
 </p>
 <p>
-    Configura tu archivo AndroidManifest.xml con los siguientes permisos:
+    Configura tu archivo <code>AndroidManifest.xml</code> con los siguientes permisos:
 </p>
 
 <p>
@@ -94,7 +94,7 @@ Tener una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta de 
     La librería está disponible a través de una descarga en JitPack. Los siguientes pasos muestran cómo implementarla:
 </p>
 <p>
-    Agrega el repositorio de JitPack en tu archivo build.gradle del módulo principal.
+    Agrega el repositorio de JitPack en tu archivo <code>build.gradle</code> del módulo principal.
 </p>
 
 ```java
@@ -127,9 +127,9 @@ EJEMPLO EN KOTLIN
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        ClipApi.initTerminal(this)
+        ClipApi.init(this)
     }
- }
+ }  
 ```
 
 ```java
@@ -139,9 +139,9 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ClipApi.INSTANCE.initTerminal(getApplicationContext());
+        ClipApi.init(this);
     }
- }
+ } 
 ```
 
 <h2 id="sdk-objeto-pago">Crear un objeto de pago</h2>

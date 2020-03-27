@@ -4,7 +4,7 @@
 Los desarrolladores pueden usar las herramientas de APIs y SDK de Clip para crear soluciones personalizadas para su negocio. 
 </p>
 <p>
-Estas herramientas permiten integrar la terminal de Clip a una aplicación de punto de venta, obtener información detallada de los depósitos de las transacciones y .
+Estas herramientas permiten integrar la terminal de Clip a una aplicación de punto de venta, obtener información detallada de los depósitos de las transacciones y cobrar con Clip en tu aplicación móvil de Android.
 </p>
 <p>
 Las APIs de Clip siguen los principios REST para el desarrollo de APIs y se comunican a través de llamadas y respuestas en formato JSON.
@@ -12,16 +12,41 @@ Las APIs de Clip siguen los principios REST para el desarrollo de APIs y se comu
 
 <div class="h2 mt-0 pb-3">¿Qué necesito antes de empezar?</div>
 <p>
-Para poder desarrollar con la API de Clip se requiere:
+Desarrolla con las herramientas de Clip siguiendo estos pasos:
 </p>
+<p>
+    <strong>Paso 1:</strong> Crea tu cuenta de Clip.<br>
+    Es necesario que te registres con Clip para poder desarrollar con las APIs de Clip.
+</p>
+<p>
+    <strong>Paso 2:</strong> Obtén tu token de autenticación.<br>
+    Todas las llamadas a la API de Clip requieren de un API Key que está relacionado a tu cuenta.
+</p>
+<p>
+    <strong>Paso 3:</strong> Conoce la documentación de referencia.<br>
+    El portal para desarrolladores de Clip contiene todos los detalles para poder implementar estas herramientas en tus propias aplicaciones.
+</p>
+<p>
+    <strong>Paso 4:</strong> Haz pruebas con las APIs y SDK de Clip.<br>
+    Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como Postman.<br> 
+    Para realizar pruebas con el SDK, puedes descargar la aplicación demo para Android.
+</p>
+<p>
+    <strong>Paso 5:</strong> Crea tu solución personalizada.<br>
+    El portal para desarrolladores de Clip ofrece varias herramientas para ayudarte a construir tu solución personalizada.
 <ul>
 <li>
-Una <a href="https://dashboard.clip.mx/sign_up" target="_blank">cuenta Clip</a> activa.
+    API de Pagos - Permite registrar pagos en una aplicación de punto de venta personalizada. 
 </li>
 <li>
-Un token de <a href="#apikey">autenticación</a>.
+    API de Depósitos - Permite obtener reportes detallados de los depósitos a tu cuenta.
+</li>
+<li>
+    Clip SDK para Android  - Permite interactuar con el dispositivo Clip Plus y Clip Plus 2 para mejorar la experiencia de cobro en tu aplicación móvil de Android.
 </li>
 </ul>
+</p>    
+
 
 <div class="h2 mt-0 pb-3">Métodos HTTP</div>
 <p>
@@ -36,17 +61,17 @@ La API de Clip está habilitada para comunicarse utilizando los siguientes méto
 </li>
 </ul>
 
-<h2 id="responses">Respuestas</h2>
+<h2 id="docs-respuestas">Respuestas</h2>
 <p>
 La API de Clip está desarrollada para regresar códigos de respuesta HTTP estándar. Todas las respuestas con código 200 incluyen un objeto JSON con la información solicitada (llamadas GET) o con un mensaje descriptivo de confirmación (llamadas POST).
 </p>
 
-<h2 id="errors">Errores</h2>
+<h2 id="d0cs-errores">Errores</h2>
 <p>
-La API de Clip está habilitada para comunicarse utilizando los siguientes métodos HTTP:
+    Las herramientas de Clip regresan códigos estándar de error cuando algo no ocurre de la forma esperada y están documentados a detalle en la sección de referencia técnica. Las APIs regresan códigos de error HTTP acompañados por un objeto JSON con los detalles del error. El SDK regresa un código de error acompañado por una descripción del error.
 </p>
 
-<h2 id="testing">Pruebas</h2>
+<h2 id="docs-pruebas">Pruebas</h2>
 <p>
 Para realizar pruebas iniciales con la API de Clip puedes utilizar cualquier herramienta que permita trabajar con APIs HTTP, como <a href="https://www.getpostman.com/downloads/">Postman</a>. Para poder realizar llamadas de prueba es necesario obtener un token de <a href="#apikey">autenticación</a>.
 </p>

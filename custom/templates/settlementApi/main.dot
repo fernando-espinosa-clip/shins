@@ -1,9 +1,10 @@
 <h1>Referencia técnica de APIs y SDK de Clip</h1>
 <p>Contacto: <a href="mailto:developers@clip.mx">developers@clip.mx</a>.</p>
-{{#def.intro}}
-{{#def.security}}
 
 > Desplázate hacia abajo para ver {{? data.header.language_tabs.length}}ejemplos de código, {{?}}de llamadas y de respuestas.{{? data.header.language_tabs.length}} Selecciona un lenguaje de programación de las pestañas en la parte superior o del menú de navegación móvil.{{?}}
+
+{{#def.intro}}
+{{#def.security}}
 
 {{? data.api.info && data.api.info.description}}{{=data.api.info.description}}{{?}}
 

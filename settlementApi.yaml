@@ -3,12 +3,6 @@ info:
   title: Endpoints
   description: >- 
     Los desarrolladores pueden usar la API de Clip para crear soluciones personalizadas de punto de venta que integren la terminal de Clip y para obtener información detallada de los depósitos de las transacciones.
-  contact:
-    name: Soporte a documentación de la API
-    email: developers@clip.mx
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
 - description: URL base del ambiente de producción. 

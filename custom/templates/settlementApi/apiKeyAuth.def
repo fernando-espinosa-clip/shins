@@ -1,3 +1,7 @@
+<h2 id="autenticacion">Autenticación</h2>
+<p>
+Todas las llamadas de la API de Clip requieren autenticación. Es necesario obtener un token de autenticación para poder utilizar de forma segura la API y poder integrar tu solución personalizada.
+</p>
 <h2 class="icon key gray mb-3" id="apikey">Api Key</h2>
 <div class="h2 mt-0 pb-3">¿Cómo obtener mi token de autenticación?</div>
 <p>Para obtener un token de autenticación sigue estos pasos:</p>

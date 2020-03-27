@@ -1,7 +1,4 @@
-# Autenticación
-<p>
-Todas las llamadas de la API de Clip requieren autenticación. Es necesario obtener un token de autenticación para poder utilizar de forma segura la API y poder integrar tu solución personalizada.
-</p>
+
 {{ var letsFilter = (data, prop, values) => Object.values(data).filter(o => values.includes(o[prop]));}}
 {{ var sd = data.api.components.securitySchemes ? letsFilter(data.api.components.securitySchemes,'type', ['apiKey']) : [];}}
 {{? sd.length > 0 }}

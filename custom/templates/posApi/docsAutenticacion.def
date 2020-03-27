@@ -1,4 +1,4 @@
-<div class="h2 mt-0 pb-3">Autenticación</div>
+<h2 id="autenticacion">Autenticación</h2>
 <p>
 Todas las llamadas de la API de Clip requieren autenticación. Es necesario obtener un token de autenticación para poder utilizar de forma segura la API y poder integrar tu solución personalizada.
 </p>
@@ -13,7 +13,7 @@ Todas las llamadas de la API de Clip requieren autenticación. Es necesario obte
 </ol>
 <div class="h2 mt-0 pb-3">¿Cómo utilizar mi token de autenticación?</div>
 <p>El token de autenticación se envía como un parámetro de encabezado o “Header” de la llamada a la API.</p>
-
+ 
 ```http
 GET https://api-gw.payclip.com/settlements/ HTTP/1.1
 Accept: application/json
