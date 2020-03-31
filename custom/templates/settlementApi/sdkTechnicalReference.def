@@ -112,7 +112,7 @@ allprojects {
 
 ```java
 dependencies {
-    implementation 'com.github.clipmx.payclip-android-sdk:app:0.3.6'
+    implementation 'com.github.clipmx.payclip-android-sdk:app:1.0.0'
 }
 ```
 
@@ -220,7 +220,7 @@ btnPayment.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         ClipPayment clipPayment = createPayment(amount);
-        ClipApi.INSTANCE.launchPaymentActivity(this, clipPayment);
+        ClipApi.launchPaymentActivity(this, clipPayment);
     }
  }); 
 ```
@@ -242,7 +242,7 @@ ClipApi.showTransactionHistoryActivity(this)
 ```java
 EJEMPLO EN JAVA
 
-ClipApi.INSTANCE.showTransactionHistoryActivity(MainActivity.this);
+ClipApi.showTransactionHistoryActivity(MainActivity.this);
 ```
 <div class="h2 mt-0 pb-3"></div>
 <p>
@@ -283,7 +283,7 @@ ClipApi.logout(object : LogoutListener {
 ```java
 EJEMPLO EN JAVA
 
-ClipApi.INSTANCE.logout(new LogoutListener() {
+ClipApi.logout(new LogoutListener() {
     @Override
     public void onLogoutSuccess(int statusCode) {
         //Logout was successful.
