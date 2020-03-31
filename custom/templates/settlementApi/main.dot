@@ -10,9 +10,9 @@
 
 {{? data.api.servers }}
 <div class="docs-note info enviroments">
-Estos son los diferentes ambientes definidos en la API:
+Este es el URL base definido para la API:
 {{~data.api.servers :s}}
-<a href="{{=s.url}}">{{=s.url}}</a> {{=s.description || ''}}
+<a onclick="return false;">{{=s.url}}</a> {{=s.description || ''}}
 {{~}}
 </div>
 {{?}}
